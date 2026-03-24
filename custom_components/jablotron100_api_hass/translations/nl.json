@@ -1,0 +1,784 @@
+{
+	"config": {
+		"step": {
+			"user": {
+				"title": "jablotron100-api-HASS",
+				"description": "Vul de administrator code in en het aantal configureerde Jablotron apparaten",
+				"data": {
+					"serial_port": "Seriele port",
+					"password": "Code",
+					"number_of_devices": "Aantal apparaten",
+					"number_of_pg_outputs": "Number of programmable PG outputs"
+				}
+			},
+			"devices": {
+				"title": "jablotron100-api-HASS / Apparaten",
+				"description": "Selecteer het apparaat-type",
+				"data": {
+					"device_001": "Apparaat 1",
+					"device_002": "Apparaat 2",
+					"device_003": "Apparaat 3",
+					"device_004": "Apparaat 4",
+					"device_005": "Apparaat 5",
+					"device_006": "Apparaat 6",
+					"device_007": "Apparaat 7",
+					"device_008": "Apparaat 8",
+					"device_009": "Apparaat 9",
+					"device_010": "Apparaat 10",
+					"device_011": "Apparaat 11",
+					"device_012": "Apparaat 12",
+					"device_013": "Apparaat 13",
+					"device_014": "Apparaat 14",
+					"device_015": "Apparaat 15",
+					"device_016": "Apparaat 16",
+					"device_017": "Apparaat 17",
+					"device_018": "Apparaat 18",
+					"device_019": "Apparaat 19",
+					"device_020": "Apparaat 20",
+					"device_021": "Apparaat 21",
+					"device_022": "Apparaat 22",
+					"device_023": "Apparaat 23",
+					"device_024": "Apparaat 24",
+					"device_025": "Apparaat 25",
+					"device_026": "Apparaat 26",
+					"device_027": "Apparaat 27",
+					"device_028": "Apparaat 28",
+					"device_029": "Apparaat 29",
+					"device_030": "Apparaat 30",
+					"device_031": "Apparaat 31",
+					"device_032": "Apparaat 32",
+					"device_033": "Apparaat 33",
+					"device_034": "Apparaat 34",
+					"device_035": "Apparaat 35",
+					"device_036": "Apparaat 36",
+					"device_037": "Apparaat 37",
+					"device_038": "Apparaat 38",
+					"device_039": "Apparaat 39",
+					"device_040": "Apparaat 40",
+					"device_041": "Apparaat 41",
+					"device_042": "Apparaat 42",
+					"device_043": "Apparaat 43",
+					"device_044": "Apparaat 44",
+					"device_045": "Apparaat 45",
+					"device_046": "Apparaat 46",
+					"device_047": "Apparaat 47",
+					"device_048": "Apparaat 48",
+					"device_049": "Apparaat 49",
+					"device_050": "Apparaat 50",
+					"device_051": "Apparaat 51",
+					"device_052": "Apparaat 52",
+					"device_053": "Apparaat 53",
+					"device_054": "Apparaat 54",
+					"device_055": "Apparaat 55",
+					"device_056": "Apparaat 56",
+					"device_057": "Apparaat 57",
+					"device_058": "Apparaat 58",
+					"device_059": "Apparaat 59",
+					"device_060": "Apparaat 60",
+					"device_061": "Apparaat 61",
+					"device_062": "Apparaat 62",
+					"device_063": "Apparaat 63",
+					"device_064": "Apparaat 64",
+					"device_065": "Apparaat 65",
+					"device_066": "Apparaat 66",
+					"device_067": "Apparaat 67",
+					"device_068": "Apparaat 68",
+					"device_069": "Apparaat 69",
+					"device_070": "Apparaat 70",
+					"device_071": "Apparaat 71",
+					"device_072": "Apparaat 72",
+					"device_073": "Apparaat 73",
+					"device_074": "Apparaat 74",
+					"device_075": "Apparaat 75",
+					"device_076": "Apparaat 76",
+					"device_077": "Apparaat 77",
+					"device_078": "Apparaat 78",
+					"device_079": "Apparaat 79",
+					"device_080": "Apparaat 80",
+					"device_081": "Apparaat 81",
+					"device_082": "Apparaat 82",
+					"device_083": "Apparaat 83",
+					"device_084": "Apparaat 84",
+					"device_085": "Apparaat 85",
+					"device_086": "Apparaat 86",
+					"device_087": "Apparaat 87",
+					"device_088": "Apparaat 88",
+					"device_089": "Apparaat 89",
+					"device_090": "Apparaat 90",
+					"device_091": "Apparaat 91",
+					"device_092": "Apparaat 92",
+					"device_093": "Apparaat 93",
+					"device_094": "Apparaat 94",
+					"device_095": "Apparaat 95",
+					"device_096": "Apparaat 96",
+					"device_097": "Apparaat 97",
+					"device_098": "Apparaat 98",
+					"device_099": "Apparaat 99",
+					"device_100": "Apparaat 100",
+					"device_101": "Apparaat 101",
+					"device_102": "Apparaat 102",
+					"device_103": "Apparaat 103",
+					"device_104": "Apparaat 104",
+					"device_105": "Apparaat 105",
+					"device_106": "Apparaat 106",
+					"device_107": "Apparaat 107",
+					"device_108": "Apparaat 108",
+					"device_109": "Apparaat 109",
+					"device_110": "Apparaat 110",
+					"device_111": "Apparaat 111",
+					"device_112": "Apparaat 112",
+					"device_113": "Apparaat 113",
+					"device_114": "Apparaat 114",
+					"device_115": "Apparaat 115",
+					"device_116": "Apparaat 116",
+					"device_117": "Apparaat 117",
+					"device_118": "Apparaat 118",
+					"device_119": "Apparaat 119",
+					"device_120": "Apparaat 120",
+					"device_121": "Apparaat 121",
+					"device_122": "Apparaat 122",
+					"device_123": "Apparaat 123",
+					"device_124": "Apparaat 124",
+					"device_125": "Apparaat 125",
+					"device_126": "Apparaat 126",
+					"device_127": "Apparaat 127",
+					"device_128": "Apparaat 128",
+					"device_129": "Apparaat 129",
+					"device_130": "Apparaat 130",
+					"device_131": "Apparaat 131",
+					"device_132": "Apparaat 132",
+					"device_133": "Apparaat 133",
+					"device_134": "Apparaat 134",
+					"device_135": "Apparaat 135",
+					"device_136": "Apparaat 136",
+					"device_137": "Apparaat 137",
+					"device_138": "Apparaat 138",
+					"device_139": "Apparaat 139",
+					"device_140": "Apparaat 140",
+					"device_141": "Apparaat 141",
+					"device_142": "Apparaat 142",
+					"device_143": "Apparaat 143",
+					"device_144": "Apparaat 144",
+					"device_145": "Apparaat 145",
+					"device_146": "Apparaat 146",
+					"device_147": "Apparaat 147",
+					"device_148": "Apparaat 148",
+					"device_149": "Apparaat 149",
+					"device_150": "Apparaat 150",
+					"device_151": "Apparaat 151",
+					"device_152": "Apparaat 152",
+					"device_153": "Apparaat 153",
+					"device_154": "Apparaat 154",
+					"device_155": "Apparaat 155",
+					"device_156": "Apparaat 156",
+					"device_157": "Apparaat 157",
+					"device_158": "Apparaat 158",
+					"device_159": "Apparaat 159",
+					"device_160": "Apparaat 160",
+					"device_161": "Apparaat 161",
+					"device_162": "Apparaat 162",
+					"device_163": "Apparaat 163",
+					"device_164": "Apparaat 164",
+					"device_165": "Apparaat 165",
+					"device_166": "Apparaat 166",
+					"device_167": "Apparaat 167",
+					"device_168": "Apparaat 168",
+					"device_169": "Apparaat 169",
+					"device_170": "Apparaat 170",
+					"device_171": "Apparaat 171",
+					"device_172": "Apparaat 172",
+					"device_173": "Apparaat 173",
+					"device_174": "Apparaat 174",
+					"device_175": "Apparaat 175",
+					"device_176": "Apparaat 176",
+					"device_177": "Apparaat 177",
+					"device_178": "Apparaat 178",
+					"device_179": "Apparaat 179",
+					"device_180": "Apparaat 180",
+					"device_181": "Apparaat 181",
+					"device_182": "Apparaat 182",
+					"device_183": "Apparaat 183",
+					"device_184": "Apparaat 184",
+					"device_185": "Apparaat 185",
+					"device_186": "Apparaat 186",
+					"device_187": "Apparaat 187",
+					"device_188": "Apparaat 188",
+					"device_189": "Apparaat 189",
+					"device_190": "Apparaat 190",
+					"device_191": "Apparaat 191",
+					"device_192": "Apparaat 192",
+					"device_193": "Apparaat 193",
+					"device_194": "Apparaat 194",
+					"device_195": "Apparaat 195",
+					"device_196": "Apparaat 196",
+					"device_197": "Apparaat 197",
+					"device_198": "Apparaat 198",
+					"device_199": "Apparaat 199",
+					"device_200": "Apparaat 200",
+					"device_201": "Apparaat 201",
+					"device_202": "Apparaat 202",
+					"device_203": "Apparaat 203",
+					"device_204": "Apparaat 204",
+					"device_205": "Apparaat 205",
+					"device_206": "Apparaat 206",
+					"device_207": "Apparaat 207",
+					"device_208": "Apparaat 208",
+					"device_209": "Apparaat 209",
+					"device_210": "Apparaat 210",
+					"device_211": "Apparaat 211",
+					"device_212": "Apparaat 212",
+					"device_213": "Apparaat 213",
+					"device_214": "Apparaat 214",
+					"device_215": "Apparaat 215",
+					"device_216": "Apparaat 216",
+					"device_217": "Apparaat 217",
+					"device_218": "Apparaat 218",
+					"device_219": "Apparaat 219",
+					"device_220": "Apparaat 220",
+					"device_221": "Apparaat 221",
+					"device_222": "Apparaat 222",
+					"device_223": "Apparaat 223",
+					"device_224": "Apparaat 224",
+					"device_225": "Apparaat 225",
+					"device_226": "Apparaat 226",
+					"device_227": "Apparaat 227",
+					"device_228": "Apparaat 228",
+					"device_229": "Apparaat 229",
+					"device_230": "Apparaat 230"
+				}
+			},
+			"reconfigure_settings": {
+				"title": "jablotron100-api-HASS",
+				"data": {
+					"serial_port": "Seriele port",
+					"password": "Code",
+					"number_of_devices": "Aantal apparaten",
+					"number_of_pg_outputs": "Number of programmable PG outputs"
+				}
+			},
+			"reconfigure_devices": {
+				"title": "jablotron100-api-HASS / Apparaten",
+				"data": {
+					"device_001": "Apparaat 1",
+					"device_002": "Apparaat 2",
+					"device_003": "Apparaat 3",
+					"device_004": "Apparaat 4",
+					"device_005": "Apparaat 5",
+					"device_006": "Apparaat 6",
+					"device_007": "Apparaat 7",
+					"device_008": "Apparaat 8",
+					"device_009": "Apparaat 9",
+					"device_010": "Apparaat 10",
+					"device_011": "Apparaat 11",
+					"device_012": "Apparaat 12",
+					"device_013": "Apparaat 13",
+					"device_014": "Apparaat 14",
+					"device_015": "Apparaat 15",
+					"device_016": "Apparaat 16",
+					"device_017": "Apparaat 17",
+					"device_018": "Apparaat 18",
+					"device_019": "Apparaat 19",
+					"device_020": "Apparaat 20",
+					"device_021": "Apparaat 21",
+					"device_022": "Apparaat 22",
+					"device_023": "Apparaat 23",
+					"device_024": "Apparaat 24",
+					"device_025": "Apparaat 25",
+					"device_026": "Apparaat 26",
+					"device_027": "Apparaat 27",
+					"device_028": "Apparaat 28",
+					"device_029": "Apparaat 29",
+					"device_030": "Apparaat 30",
+					"device_031": "Apparaat 31",
+					"device_032": "Apparaat 32",
+					"device_033": "Apparaat 33",
+					"device_034": "Apparaat 34",
+					"device_035": "Apparaat 35",
+					"device_036": "Apparaat 36",
+					"device_037": "Apparaat 37",
+					"device_038": "Apparaat 38",
+					"device_039": "Apparaat 39",
+					"device_040": "Apparaat 40",
+					"device_041": "Apparaat 41",
+					"device_042": "Apparaat 42",
+					"device_043": "Apparaat 43",
+					"device_044": "Apparaat 44",
+					"device_045": "Apparaat 45",
+					"device_046": "Apparaat 46",
+					"device_047": "Apparaat 47",
+					"device_048": "Apparaat 48",
+					"device_049": "Apparaat 49",
+					"device_050": "Apparaat 50",
+					"device_051": "Apparaat 51",
+					"device_052": "Apparaat 52",
+					"device_053": "Apparaat 53",
+					"device_054": "Apparaat 54",
+					"device_055": "Apparaat 55",
+					"device_056": "Apparaat 56",
+					"device_057": "Apparaat 57",
+					"device_058": "Apparaat 58",
+					"device_059": "Apparaat 59",
+					"device_060": "Apparaat 60",
+					"device_061": "Apparaat 61",
+					"device_062": "Apparaat 62",
+					"device_063": "Apparaat 63",
+					"device_064": "Apparaat 64",
+					"device_065": "Apparaat 65",
+					"device_066": "Apparaat 66",
+					"device_067": "Apparaat 67",
+					"device_068": "Apparaat 68",
+					"device_069": "Apparaat 69",
+					"device_070": "Apparaat 70",
+					"device_071": "Apparaat 71",
+					"device_072": "Apparaat 72",
+					"device_073": "Apparaat 73",
+					"device_074": "Apparaat 74",
+					"device_075": "Apparaat 75",
+					"device_076": "Apparaat 76",
+					"device_077": "Apparaat 77",
+					"device_078": "Apparaat 78",
+					"device_079": "Apparaat 79",
+					"device_080": "Apparaat 80",
+					"device_081": "Apparaat 81",
+					"device_082": "Apparaat 82",
+					"device_083": "Apparaat 83",
+					"device_084": "Apparaat 84",
+					"device_085": "Apparaat 85",
+					"device_086": "Apparaat 86",
+					"device_087": "Apparaat 87",
+					"device_088": "Apparaat 88",
+					"device_089": "Apparaat 89",
+					"device_090": "Apparaat 90",
+					"device_091": "Apparaat 91",
+					"device_092": "Apparaat 92",
+					"device_093": "Apparaat 93",
+					"device_094": "Apparaat 94",
+					"device_095": "Apparaat 95",
+					"device_096": "Apparaat 96",
+					"device_097": "Apparaat 97",
+					"device_098": "Apparaat 98",
+					"device_099": "Apparaat 99",
+					"device_100": "Apparaat 100",
+					"device_101": "Apparaat 101",
+					"device_102": "Apparaat 102",
+					"device_103": "Apparaat 103",
+					"device_104": "Apparaat 104",
+					"device_105": "Apparaat 105",
+					"device_106": "Apparaat 106",
+					"device_107": "Apparaat 107",
+					"device_108": "Apparaat 108",
+					"device_109": "Apparaat 109",
+					"device_110": "Apparaat 110",
+					"device_111": "Apparaat 111",
+					"device_112": "Apparaat 112",
+					"device_113": "Apparaat 113",
+					"device_114": "Apparaat 114",
+					"device_115": "Apparaat 115",
+					"device_116": "Apparaat 116",
+					"device_117": "Apparaat 117",
+					"device_118": "Apparaat 118",
+					"device_119": "Apparaat 119",
+					"device_120": "Apparaat 120",
+					"device_121": "Apparaat 121",
+					"device_122": "Apparaat 122",
+					"device_123": "Apparaat 123",
+					"device_124": "Apparaat 124",
+					"device_125": "Apparaat 125",
+					"device_126": "Apparaat 126",
+					"device_127": "Apparaat 127",
+					"device_128": "Apparaat 128",
+					"device_129": "Apparaat 129",
+					"device_130": "Apparaat 130",
+					"device_131": "Apparaat 131",
+					"device_132": "Apparaat 132",
+					"device_133": "Apparaat 133",
+					"device_134": "Apparaat 134",
+					"device_135": "Apparaat 135",
+					"device_136": "Apparaat 136",
+					"device_137": "Apparaat 137",
+					"device_138": "Apparaat 138",
+					"device_139": "Apparaat 139",
+					"device_140": "Apparaat 140",
+					"device_141": "Apparaat 141",
+					"device_142": "Apparaat 142",
+					"device_143": "Apparaat 143",
+					"device_144": "Apparaat 144",
+					"device_145": "Apparaat 145",
+					"device_146": "Apparaat 146",
+					"device_147": "Apparaat 147",
+					"device_148": "Apparaat 148",
+					"device_149": "Apparaat 149",
+					"device_150": "Apparaat 150",
+					"device_151": "Apparaat 151",
+					"device_152": "Apparaat 152",
+					"device_153": "Apparaat 153",
+					"device_154": "Apparaat 154",
+					"device_155": "Apparaat 155",
+					"device_156": "Apparaat 156",
+					"device_157": "Apparaat 157",
+					"device_158": "Apparaat 158",
+					"device_159": "Apparaat 159",
+					"device_160": "Apparaat 160",
+					"device_161": "Apparaat 161",
+					"device_162": "Apparaat 162",
+					"device_163": "Apparaat 163",
+					"device_164": "Apparaat 164",
+					"device_165": "Apparaat 165",
+					"device_166": "Apparaat 166",
+					"device_167": "Apparaat 167",
+					"device_168": "Apparaat 168",
+					"device_169": "Apparaat 169",
+					"device_170": "Apparaat 170",
+					"device_171": "Apparaat 171",
+					"device_172": "Apparaat 172",
+					"device_173": "Apparaat 173",
+					"device_174": "Apparaat 174",
+					"device_175": "Apparaat 175",
+					"device_176": "Apparaat 176",
+					"device_177": "Apparaat 177",
+					"device_178": "Apparaat 178",
+					"device_179": "Apparaat 179",
+					"device_180": "Apparaat 180",
+					"device_181": "Apparaat 181",
+					"device_182": "Apparaat 182",
+					"device_183": "Apparaat 183",
+					"device_184": "Apparaat 184",
+					"device_185": "Apparaat 185",
+					"device_186": "Apparaat 186",
+					"device_187": "Apparaat 187",
+					"device_188": "Apparaat 188",
+					"device_189": "Apparaat 189",
+					"device_190": "Apparaat 190",
+					"device_191": "Apparaat 191",
+					"device_192": "Apparaat 192",
+					"device_193": "Apparaat 193",
+					"device_194": "Apparaat 194",
+					"device_195": "Apparaat 195",
+					"device_196": "Apparaat 196",
+					"device_197": "Apparaat 197",
+					"device_198": "Apparaat 198",
+					"device_199": "Apparaat 199",
+					"device_200": "Apparaat 200",
+					"device_201": "Apparaat 201",
+					"device_202": "Apparaat 202",
+					"device_203": "Apparaat 203",
+					"device_204": "Apparaat 204",
+					"device_205": "Apparaat 205",
+					"device_206": "Apparaat 206",
+					"device_207": "Apparaat 207",
+					"device_208": "Apparaat 208",
+					"device_209": "Apparaat 209",
+					"device_210": "Apparaat 210",
+					"device_211": "Apparaat 211",
+					"device_212": "Apparaat 212",
+					"device_213": "Apparaat 213",
+					"device_214": "Apparaat 214",
+					"device_215": "Apparaat 215",
+					"device_216": "Apparaat 216",
+					"device_217": "Apparaat 217",
+					"device_218": "Apparaat 218",
+					"device_219": "Apparaat 219",
+					"device_220": "Apparaat 220",
+					"device_221": "Apparaat 221",
+					"device_222": "Apparaat 222",
+					"device_223": "Apparaat 223",
+					"device_224": "Apparaat 224",
+					"device_225": "Apparaat 225",
+					"device_226": "Apparaat 226",
+					"device_227": "Apparaat 227",
+					"device_228": "Apparaat 228",
+					"device_229": "Apparaat 229",
+					"device_230": "Apparaat 230"
+				}
+			}
+		},
+		"error": {
+			"service_unavailable": "Jablotron is niet gevonden",
+			"model_not_detected": "Jablotron model niet gedetecteerd",
+			"model_not_supported": "Jablotron model niet ondersteund"
+		},
+		"abort": {
+			"already_configured": "Jablotron is al geconfigureerd",
+			"reconfigure_successful": "Jablotron successfully reconfigured"
+		}
+	},
+	"options": {
+		"step": {
+			"init": {
+				"menu_options": {
+					"options": "Opties",
+					"debug": "Debugging"
+				}
+			},
+			"options": {
+				"title": "Opties",
+				"data": {
+					"partially_arming_mode": "Partially arming",
+					"require_code_to_arm": "Code verplicht om in te schakelen",
+					"require_code_to_disarm": "Code verplicht om uit te schakelen"
+				}
+			},
+			"debug": {
+				"title": "Debugging",
+				"data": {
+					"log_all_incoming_packets": "Log all incoming packets",
+					"log_all_outcoming_packets": "Log all outcoming packets",
+					"log_sections_packets": "Log sections packets",
+					"log_devices_packets": "Log devices packets",
+					"log_pg_outputs_packets": "Log PG outputs packets"
+				}
+			}
+		}
+	},
+	"selector": {
+		"device_type": {
+			"options": {
+				"keypad": "Keypad",
+				"keypad_with_door_opening_detector": "Keypad with door opening detector",
+				"outdoor_siren": "Outdoor siren",
+				"indoor_siren": "Indoor siren",
+				"motion_detector": "Motion detector",
+				"window_opening_detector": "Window opening detector",
+				"door_opening_detector": "Door opening detector",
+				"garage_door_opening_detector": "Garage door opening detector",
+				"glass_break_detector": "Glass break detector",
+				"smoke_detector": "Smoke detector",
+				"flood_detector": "Flood detector",
+				"gas_detector": "Gas detector",
+				"thermostat": "Thermostat",
+				"thermometer": "Thermometer",
+				"lock": "Lock",
+				"tamper": "Tamper",
+				"button": "Button",
+				"key_fob": "Key fob",
+				"electricity_meter_with_pulse_output": "Electricity meter with pulse output",
+				"radio_module": "Radio module",
+				"valve": "Valve",
+				"custom": "Custom",
+				"other": "Other",
+				"empty": "Empty"
+			}
+		},
+		"partially_arming_mode": {
+			"options": {
+				"not_supported": "Not supported",
+				"night_mode": "Night",
+				"home_mode": "Home"
+			}
+		}
+	},
+	"device": {
+		"keypad": {
+			"name": "Keypad (device {deviceNo})"
+		},
+		"keypad_with_door_opening_detector": {
+			"name": "Keypad with door opening detector (device {deviceNo})"
+		},
+		"outdoor_siren": {
+			"name": "Outdoor siren (device {deviceNo})"
+		},
+		"indoor_siren": {
+			"name": "Indoor siren (device {deviceNo})"
+		},
+		"motion_detector": {
+			"name": "Motion detector (device {deviceNo})"
+		},
+		"window_opening_detector": {
+			"name": "Window opening detector (device {deviceNo})"
+		},
+		"door_opening_detector": {
+			"name": "Door opening detector (device {deviceNo})"
+		},
+		"garage_door_opening_detector": {
+			"name": "Garage door opening detector (device {deviceNo})"
+		},
+		"glass_break_detector": {
+			"name": "Glass break detector (device {deviceNo})"
+		},
+		"smoke_detector": {
+			"name": "Smoke detector (device {deviceNo})"
+		},
+		"flood_detector": {
+			"name": "Flood detector (device {deviceNo})"
+		},
+		"gas_detector": {
+			"name": "Gas detector (device {deviceNo})"
+		},
+		"thermostat": {
+			"name": "Thermostat (device {deviceNo})"
+		},
+		"thermometer": {
+			"name": "Thermometer (device {deviceNo})"
+		},
+		"lock": {
+			"name": "Lock (device {deviceNo})"
+		},
+		"tamper": {
+			"name": "Tamper (device {deviceNo})"
+		},
+		"button": {
+			"name": "Button (device {deviceNo})"
+		},
+		"key_fob": {
+			"name": "Key fob (device {deviceNo})"
+		},
+		"electricity_meter_with_pulse_output": {
+			"name": "Electricity meter with pulse output (device {deviceNo})"
+		},
+		"radio_module": {
+			"name": "Radio module (device {deviceNo})"
+		},
+		"valve": {
+			"name": "Valve (device {deviceNo})"
+		},
+		"custom": {
+			"name": "Custom (device {deviceNo})"
+		},
+		"other": {
+			"name": "Other (device {deviceNo})"
+		},
+		"empty": {
+			"name": "Empty (device {deviceNo})"
+		},
+		"section": {
+			"name": "Section {sectionNo}"
+		}
+	},
+	"entity": {
+		"binary_sensor": {
+			"battery_problem": {
+				"name": "Battery problem"
+			},
+			"device_state_motion": {
+				"name": "Motion"
+			},
+			"device_state_window": {
+				"name": "Window"
+			},
+			"device_state_door": {
+				"name": "Door"
+			},
+			"device_state_garage_door": {
+				"name": "Garage door"
+			},
+			"device_state_glass": {
+				"name": "Glass"
+			},
+			"device_state_moisture": {
+				"name": "Moisture"
+			},
+			"device_state_gas": {
+				"name": "Gas"
+			},
+			"device_state_smoke": {
+				"name": "Smoke"
+			},
+			"device_state_lock": {
+				"name": "Lock"
+			},
+			"device_state_tamper": {
+				"name": "Tamper"
+			},
+			"device_state_thermostat": {
+				"name": "Thermostat"
+			},
+			"device_state_thermometer": {
+				"name": "Thermometer"
+			},
+			"device_state_indoor_siren_button": {
+				"name": "Button"
+			},
+			"device_state_button": {
+				"name": "Button"
+			},
+			"device_state_valve": {
+				"name": "Valve"
+			},
+			"device_state_custom": {
+				"name": "Custom"
+			},
+			"fire": {
+				"name": "Fire"
+			},
+			"gsm_signal": {
+				"name": "GSM signal"
+			},
+			"lan_connection": {
+				"name": "LAN connection"
+			},
+			"power_supple": {
+				"name": "Power supply"
+			},
+			"problem": {
+				"name": "Problem"
+			}
+		},
+		"event": {
+			"login": {
+				"name": "Login",
+				"state_attributes": {
+					"event_type": {
+						"state": {
+							"wrong_code": "Wrong code"
+						}
+					}
+				}
+			}
+		},
+		"sensor": {
+			"battery_level": {
+				"name": "Battery level"
+			},
+			"battery_standby_voltage": {
+				"name": "Battery standby voltage"
+			},
+			"battery_load_voltage": {
+				"name": "Battery load voltage"
+			},
+			"bus_1_devices_loss": {
+				"name": "BUS 1 devices loss"
+			},
+			"bus_2_devices_loss": {
+				"name": "BUS 2 devices loss"
+			},
+			"bus_3_devices_loss": {
+				"name": "BUS 3 devices loss"
+			},
+			"bus_1_voltage": {
+				"name": "BUS 1 voltage"
+			},
+			"bus_2_voltage": {
+				"name": "BUS 2 voltage"
+			},
+			"bus_3_voltage": {
+				"name": "BUS 3 voltage"
+			},
+			"gsm_signal_strength": {
+				"name": "GSM signal strength"
+			},
+			"lan_ip": {
+				"name": "LAN IP"
+			},
+			"pulses": {
+				"name": "Pulses"
+			},
+			"signal_strength": {
+				"name": "Signal strength"
+			},
+			"temperature": {
+				"name": "Temperature"
+			}
+		},
+		"switch": {
+			"pg_output": {
+				"name": "PG output {pgOutputNo}"
+			}
+		}
+	},
+	"services": {
+		"reset_problem": {
+			"name": "Reset problem",
+			"description": "Reset problem."
+		}
+	}
+}

@@ -1,0 +1,784 @@
+{
+	"config": {
+		"step": {
+			"user": {
+				"title": "jablotron100-api-HASS",
+				"description": "Pre sledovanie stavu periferií je potrebné kód administrátora a zadanie počtu periferií",
+				"data": {
+					"serial_port": "Sériový port",
+					"password": "Kód",
+					"number_of_devices": "Počet periferií",
+					"number_of_pg_outputs": "Počet programovateľných výstupů PG"
+				}
+			},
+			"devices": {
+				"title": "jablotron100-api-HASS / Periférie",
+				"description": "Prosím nastavte typ všetkých periferií",
+				"data": {
+					"device_001": "Periféria 1",
+					"device_002": "Periféria 2",
+					"device_003": "Periféria 3",
+					"device_004": "Periféria 4",
+					"device_005": "Periféria 5",
+					"device_006": "Periféria 6",
+					"device_007": "Periféria 7",
+					"device_008": "Periféria 8",
+					"device_009": "Periféria 9",
+					"device_010": "Periféria 10",
+					"device_011": "Periféria 11",
+					"device_012": "Periféria 12",
+					"device_013": "Periféria 13",
+					"device_014": "Periféria 14",
+					"device_015": "Periféria 15",
+					"device_016": "Periféria 16",
+					"device_017": "Periféria 17",
+					"device_018": "Periféria 18",
+					"device_019": "Periféria 19",
+					"device_020": "Periféria 20",
+					"device_021": "Periféria 21",
+					"device_022": "Periféria 22",
+					"device_023": "Periféria 23",
+					"device_024": "Periféria 24",
+					"device_025": "Periféria 25",
+					"device_026": "Periféria 26",
+					"device_027": "Periféria 27",
+					"device_028": "Periféria 28",
+					"device_029": "Periféria 29",
+					"device_030": "Periféria 30",
+					"device_031": "Periféria 31",
+					"device_032": "Periféria 32",
+					"device_033": "Periféria 33",
+					"device_034": "Periféria 34",
+					"device_035": "Periféria 35",
+					"device_036": "Periféria 36",
+					"device_037": "Periféria 37",
+					"device_038": "Periféria 38",
+					"device_039": "Periféria 39",
+					"device_040": "Periféria 40",
+					"device_041": "Periféria 41",
+					"device_042": "Periféria 42",
+					"device_043": "Periféria 43",
+					"device_044": "Periféria 44",
+					"device_045": "Periféria 45",
+					"device_046": "Periféria 46",
+					"device_047": "Periféria 47",
+					"device_048": "Periféria 48",
+					"device_049": "Periféria 49",
+					"device_050": "Periféria 50",
+					"device_051": "Periféria 51",
+					"device_052": "Periféria 52",
+					"device_053": "Periféria 53",
+					"device_054": "Periféria 54",
+					"device_055": "Periféria 55",
+					"device_056": "Periféria 56",
+					"device_057": "Periféria 57",
+					"device_058": "Periféria 58",
+					"device_059": "Periféria 59",
+					"device_060": "Periféria 60",
+					"device_061": "Periféria 61",
+					"device_062": "Periféria 62",
+					"device_063": "Periféria 63",
+					"device_064": "Periféria 64",
+					"device_065": "Periféria 65",
+					"device_066": "Periféria 66",
+					"device_067": "Periféria 67",
+					"device_068": "Periféria 68",
+					"device_069": "Periféria 69",
+					"device_070": "Periféria 70",
+					"device_071": "Periféria 71",
+					"device_072": "Periféria 72",
+					"device_073": "Periféria 73",
+					"device_074": "Periféria 74",
+					"device_075": "Periféria 75",
+					"device_076": "Periféria 76",
+					"device_077": "Periféria 77",
+					"device_078": "Periféria 78",
+					"device_079": "Periféria 79",
+					"device_080": "Periféria 80",
+					"device_081": "Periféria 81",
+					"device_082": "Periféria 82",
+					"device_083": "Periféria 83",
+					"device_084": "Periféria 84",
+					"device_085": "Periféria 85",
+					"device_086": "Periféria 86",
+					"device_087": "Periféria 87",
+					"device_088": "Periféria 88",
+					"device_089": "Periféria 89",
+					"device_090": "Periféria 90",
+					"device_091": "Periféria 91",
+					"device_092": "Periféria 92",
+					"device_093": "Periféria 93",
+					"device_094": "Periféria 94",
+					"device_095": "Periféria 95",
+					"device_096": "Periféria 96",
+					"device_097": "Periféria 97",
+					"device_098": "Periféria 98",
+					"device_099": "Periféria 99",
+					"device_100": "Periféria 100",
+					"device_101": "Periféria 101",
+					"device_102": "Periféria 102",
+					"device_103": "Periféria 103",
+					"device_104": "Periféria 104",
+					"device_105": "Periféria 105",
+					"device_106": "Periféria 106",
+					"device_107": "Periféria 107",
+					"device_108": "Periféria 108",
+					"device_109": "Periféria 109",
+					"device_110": "Periféria 110",
+					"device_111": "Periféria 111",
+					"device_112": "Periféria 112",
+					"device_113": "Periféria 113",
+					"device_114": "Periféria 114",
+					"device_115": "Periféria 115",
+					"device_116": "Periféria 116",
+					"device_117": "Periféria 117",
+					"device_118": "Periféria 118",
+					"device_119": "Periféria 119",
+					"device_120": "Periféria 120",
+					"device_121": "Periféria 121",
+					"device_122": "Periféria 122",
+					"device_123": "Periféria 123",
+					"device_124": "Periféria 124",
+					"device_125": "Periféria 125",
+					"device_126": "Periféria 126",
+					"device_127": "Periféria 127",
+					"device_128": "Periféria 128",
+					"device_129": "Periféria 129",
+					"device_130": "Periféria 130",
+					"device_131": "Periféria 131",
+					"device_132": "Periféria 132",
+					"device_133": "Periféria 133",
+					"device_134": "Periféria 134",
+					"device_135": "Periféria 135",
+					"device_136": "Periféria 136",
+					"device_137": "Periféria 137",
+					"device_138": "Periféria 138",
+					"device_139": "Periféria 139",
+					"device_140": "Periféria 140",
+					"device_141": "Periféria 141",
+					"device_142": "Periféria 142",
+					"device_143": "Periféria 143",
+					"device_144": "Periféria 144",
+					"device_145": "Periféria 145",
+					"device_146": "Periféria 146",
+					"device_147": "Periféria 147",
+					"device_148": "Periféria 148",
+					"device_149": "Periféria 149",
+					"device_150": "Periféria 150",
+					"device_151": "Periféria 151",
+					"device_152": "Periféria 152",
+					"device_153": "Periféria 153",
+					"device_154": "Periféria 154",
+					"device_155": "Periféria 155",
+					"device_156": "Periféria 156",
+					"device_157": "Periféria 157",
+					"device_158": "Periféria 158",
+					"device_159": "Periféria 159",
+					"device_160": "Periféria 160",
+					"device_161": "Periféria 161",
+					"device_162": "Periféria 162",
+					"device_163": "Periféria 163",
+					"device_164": "Periféria 164",
+					"device_165": "Periféria 165",
+					"device_166": "Periféria 166",
+					"device_167": "Periféria 167",
+					"device_168": "Periféria 168",
+					"device_169": "Periféria 169",
+					"device_170": "Periféria 170",
+					"device_171": "Periféria 171",
+					"device_172": "Periféria 172",
+					"device_173": "Periféria 173",
+					"device_174": "Periféria 174",
+					"device_175": "Periféria 175",
+					"device_176": "Periféria 176",
+					"device_177": "Periféria 177",
+					"device_178": "Periféria 178",
+					"device_179": "Periféria 179",
+					"device_180": "Periféria 180",
+					"device_181": "Periféria 181",
+					"device_182": "Periféria 182",
+					"device_183": "Periféria 183",
+					"device_184": "Periféria 184",
+					"device_185": "Periféria 185",
+					"device_186": "Periféria 186",
+					"device_187": "Periféria 187",
+					"device_188": "Periféria 188",
+					"device_189": "Periféria 189",
+					"device_190": "Periféria 190",
+					"device_191": "Periféria 191",
+					"device_192": "Periféria 192",
+					"device_193": "Periféria 193",
+					"device_194": "Periféria 194",
+					"device_195": "Periféria 195",
+					"device_196": "Periféria 196",
+					"device_197": "Periféria 197",
+					"device_198": "Periféria 198",
+					"device_199": "Periféria 199",
+					"device_200": "Periféria 200",
+					"device_201": "Periféria 201",
+					"device_202": "Periféria 202",
+					"device_203": "Periféria 203",
+					"device_204": "Periféria 204",
+					"device_205": "Periféria 205",
+					"device_206": "Periféria 206",
+					"device_207": "Periféria 207",
+					"device_208": "Periféria 208",
+					"device_209": "Periféria 209",
+					"device_210": "Periféria 210",
+					"device_211": "Periféria 211",
+					"device_212": "Periféria 212",
+					"device_213": "Periféria 213",
+					"device_214": "Periféria 214",
+					"device_215": "Periféria 215",
+					"device_216": "Periféria 216",
+					"device_217": "Periféria 217",
+					"device_218": "Periféria 218",
+					"device_219": "Periféria 219",
+					"device_220": "Periféria 220",
+					"device_221": "Periféria 221",
+					"device_222": "Periféria 222",
+					"device_223": "Periféria 223",
+					"device_224": "Periféria 224",
+					"device_225": "Periféria 225",
+					"device_226": "Periféria 226",
+					"device_227": "Periféria 227",
+					"device_228": "Periféria 228",
+					"device_229": "Periféria 229",
+					"device_230": "Periféria 230"
+				}
+			},
+			"reconfigure_settings": {
+				"title": "jablotron100-api-HASS",
+				"data": {
+					"serial_port": "Sériový port",
+					"password": "Kód",
+					"number_of_devices": "Počet periferií",
+					"number_of_pg_outputs": "Počet programovateľných výstupů PG"
+				}
+			},
+			"reconfigure_devices": {
+				"title": "jablotron100-api-HASS / Periférie",
+				"data": {
+					"device_001": "Periféria 1",
+					"device_002": "Periféria 2",
+					"device_003": "Periféria 3",
+					"device_004": "Periféria 4",
+					"device_005": "Periféria 5",
+					"device_006": "Periféria 6",
+					"device_007": "Periféria 7",
+					"device_008": "Periféria 8",
+					"device_009": "Periféria 9",
+					"device_010": "Periféria 10",
+					"device_011": "Periféria 11",
+					"device_012": "Periféria 12",
+					"device_013": "Periféria 13",
+					"device_014": "Periféria 14",
+					"device_015": "Periféria 15",
+					"device_016": "Periféria 16",
+					"device_017": "Periféria 17",
+					"device_018": "Periféria 18",
+					"device_019": "Periféria 19",
+					"device_020": "Periféria 20",
+					"device_021": "Periféria 21",
+					"device_022": "Periféria 22",
+					"device_023": "Periféria 23",
+					"device_024": "Periféria 24",
+					"device_025": "Periféria 25",
+					"device_026": "Periféria 26",
+					"device_027": "Periféria 27",
+					"device_028": "Periféria 28",
+					"device_029": "Periféria 29",
+					"device_030": "Periféria 30",
+					"device_031": "Periféria 31",
+					"device_032": "Periféria 32",
+					"device_033": "Periféria 33",
+					"device_034": "Periféria 34",
+					"device_035": "Periféria 35",
+					"device_036": "Periféria 36",
+					"device_037": "Periféria 37",
+					"device_038": "Periféria 38",
+					"device_039": "Periféria 39",
+					"device_040": "Periféria 40",
+					"device_041": "Periféria 41",
+					"device_042": "Periféria 42",
+					"device_043": "Periféria 43",
+					"device_044": "Periféria 44",
+					"device_045": "Periféria 45",
+					"device_046": "Periféria 46",
+					"device_047": "Periféria 47",
+					"device_048": "Periféria 48",
+					"device_049": "Periféria 49",
+					"device_050": "Periféria 50",
+					"device_051": "Periféria 51",
+					"device_052": "Periféria 52",
+					"device_053": "Periféria 53",
+					"device_054": "Periféria 54",
+					"device_055": "Periféria 55",
+					"device_056": "Periféria 56",
+					"device_057": "Periféria 57",
+					"device_058": "Periféria 58",
+					"device_059": "Periféria 59",
+					"device_060": "Periféria 60",
+					"device_061": "Periféria 61",
+					"device_062": "Periféria 62",
+					"device_063": "Periféria 63",
+					"device_064": "Periféria 64",
+					"device_065": "Periféria 65",
+					"device_066": "Periféria 66",
+					"device_067": "Periféria 67",
+					"device_068": "Periféria 68",
+					"device_069": "Periféria 69",
+					"device_070": "Periféria 70",
+					"device_071": "Periféria 71",
+					"device_072": "Periféria 72",
+					"device_073": "Periféria 73",
+					"device_074": "Periféria 74",
+					"device_075": "Periféria 75",
+					"device_076": "Periféria 76",
+					"device_077": "Periféria 77",
+					"device_078": "Periféria 78",
+					"device_079": "Periféria 79",
+					"device_080": "Periféria 80",
+					"device_081": "Periféria 81",
+					"device_082": "Periféria 82",
+					"device_083": "Periféria 83",
+					"device_084": "Periféria 84",
+					"device_085": "Periféria 85",
+					"device_086": "Periféria 86",
+					"device_087": "Periféria 87",
+					"device_088": "Periféria 88",
+					"device_089": "Periféria 89",
+					"device_090": "Periféria 90",
+					"device_091": "Periféria 91",
+					"device_092": "Periféria 92",
+					"device_093": "Periféria 93",
+					"device_094": "Periféria 94",
+					"device_095": "Periféria 95",
+					"device_096": "Periféria 96",
+					"device_097": "Periféria 97",
+					"device_098": "Periféria 98",
+					"device_099": "Periféria 99",
+					"device_100": "Periféria 100",
+					"device_101": "Periféria 101",
+					"device_102": "Periféria 102",
+					"device_103": "Periféria 103",
+					"device_104": "Periféria 104",
+					"device_105": "Periféria 105",
+					"device_106": "Periféria 106",
+					"device_107": "Periféria 107",
+					"device_108": "Periféria 108",
+					"device_109": "Periféria 109",
+					"device_110": "Periféria 110",
+					"device_111": "Periféria 111",
+					"device_112": "Periféria 112",
+					"device_113": "Periféria 113",
+					"device_114": "Periféria 114",
+					"device_115": "Periféria 115",
+					"device_116": "Periféria 116",
+					"device_117": "Periféria 117",
+					"device_118": "Periféria 118",
+					"device_119": "Periféria 119",
+					"device_120": "Periféria 120",
+					"device_121": "Periféria 121",
+					"device_122": "Periféria 122",
+					"device_123": "Periféria 123",
+					"device_124": "Periféria 124",
+					"device_125": "Periféria 125",
+					"device_126": "Periféria 126",
+					"device_127": "Periféria 127",
+					"device_128": "Periféria 128",
+					"device_129": "Periféria 129",
+					"device_130": "Periféria 130",
+					"device_131": "Periféria 131",
+					"device_132": "Periféria 132",
+					"device_133": "Periféria 133",
+					"device_134": "Periféria 134",
+					"device_135": "Periféria 135",
+					"device_136": "Periféria 136",
+					"device_137": "Periféria 137",
+					"device_138": "Periféria 138",
+					"device_139": "Periféria 139",
+					"device_140": "Periféria 140",
+					"device_141": "Periféria 141",
+					"device_142": "Periféria 142",
+					"device_143": "Periféria 143",
+					"device_144": "Periféria 144",
+					"device_145": "Periféria 145",
+					"device_146": "Periféria 146",
+					"device_147": "Periféria 147",
+					"device_148": "Periféria 148",
+					"device_149": "Periféria 149",
+					"device_150": "Periféria 150",
+					"device_151": "Periféria 151",
+					"device_152": "Periféria 152",
+					"device_153": "Periféria 153",
+					"device_154": "Periféria 154",
+					"device_155": "Periféria 155",
+					"device_156": "Periféria 156",
+					"device_157": "Periféria 157",
+					"device_158": "Periféria 158",
+					"device_159": "Periféria 159",
+					"device_160": "Periféria 160",
+					"device_161": "Periféria 161",
+					"device_162": "Periféria 162",
+					"device_163": "Periféria 163",
+					"device_164": "Periféria 164",
+					"device_165": "Periféria 165",
+					"device_166": "Periféria 166",
+					"device_167": "Periféria 167",
+					"device_168": "Periféria 168",
+					"device_169": "Periféria 169",
+					"device_170": "Periféria 170",
+					"device_171": "Periféria 171",
+					"device_172": "Periféria 172",
+					"device_173": "Periféria 173",
+					"device_174": "Periféria 174",
+					"device_175": "Periféria 175",
+					"device_176": "Periféria 176",
+					"device_177": "Periféria 177",
+					"device_178": "Periféria 178",
+					"device_179": "Periféria 179",
+					"device_180": "Periféria 180",
+					"device_181": "Periféria 181",
+					"device_182": "Periféria 182",
+					"device_183": "Periféria 183",
+					"device_184": "Periféria 184",
+					"device_185": "Periféria 185",
+					"device_186": "Periféria 186",
+					"device_187": "Periféria 187",
+					"device_188": "Periféria 188",
+					"device_189": "Periféria 189",
+					"device_190": "Periféria 190",
+					"device_191": "Periféria 191",
+					"device_192": "Periféria 192",
+					"device_193": "Periféria 193",
+					"device_194": "Periféria 194",
+					"device_195": "Periféria 195",
+					"device_196": "Periféria 196",
+					"device_197": "Periféria 197",
+					"device_198": "Periféria 198",
+					"device_199": "Periféria 199",
+					"device_200": "Periféria 200",
+					"device_201": "Periféria 201",
+					"device_202": "Periféria 202",
+					"device_203": "Periféria 203",
+					"device_204": "Periféria 204",
+					"device_205": "Periféria 205",
+					"device_206": "Periféria 206",
+					"device_207": "Periféria 207",
+					"device_208": "Periféria 208",
+					"device_209": "Periféria 209",
+					"device_210": "Periféria 210",
+					"device_211": "Periféria 211",
+					"device_212": "Periféria 212",
+					"device_213": "Periféria 213",
+					"device_214": "Periféria 214",
+					"device_215": "Periféria 215",
+					"device_216": "Periféria 216",
+					"device_217": "Periféria 217",
+					"device_218": "Periféria 218",
+					"device_219": "Periféria 219",
+					"device_220": "Periféria 220",
+					"device_221": "Periféria 221",
+					"device_222": "Periféria 222",
+					"device_223": "Periféria 223",
+					"device_224": "Periféria 224",
+					"device_225": "Periféria 225",
+					"device_226": "Periféria 226",
+					"device_227": "Periféria 227",
+					"device_228": "Periféria 228",
+					"device_229": "Periféria 229",
+					"device_230": "Periféria 230"
+				}
+			}
+		},
+		"error": {
+			"service_unavailable": "Jablotron nie je dostupný",
+			"model_not_detected": "Typ ústredne Jablotron nebol rozpoznaný",
+			"model_not_supported": "Typ ústredne Jablotron nie je podporovaný"
+		},
+		"abort": {
+			"already_configured": "Jablotron je už nakonfigurovaný",
+			"reconfigure_successful": "Jablotron successfully reconfigured"
+		}
+	},
+	"options": {
+		"step": {
+			"init": {
+				"menu_options": {
+					"options": "Možnosti",
+					"debug": "Ladenie"
+				}
+			},
+			"options": {
+				"title": "Možnosti",
+				"data": {
+					"partially_arming_mode": "Partially arming",
+					"require_code_to_arm": "Vyžadovať kód k zabezpečeniu",
+					"require_code_to_disarm": "Vyžadovať kód k odbezpečeniu"
+				}
+			},
+			"debug": {
+				"title": "Ladenie",
+				"data": {
+					"log_all_incoming_packets": "Logovať všetky prichádzajúce pakety",
+					"log_all_outcoming_packets": "Logovať všetky odchádzajúce pakety",
+					"log_sections_packets": "Logovať pakety sekcií",
+					"log_devices_packets": "Logovať pakety periferií",
+					"log_pg_outputs_packets": "Logovať pakety programovateľných výstupov PG"
+				}
+			}
+		}
+	},
+	"selector": {
+		"device_type": {
+			"options": {
+				"keypad": "Keypad",
+				"keypad_with_door_opening_detector": "Keypad with door opening detector",
+				"outdoor_siren": "Outdoor siren",
+				"indoor_siren": "Indoor siren",
+				"motion_detector": "Motion detector",
+				"window_opening_detector": "Window opening detector",
+				"door_opening_detector": "Door opening detector",
+				"garage_door_opening_detector": "Garage door opening detector",
+				"glass_break_detector": "Glass break detector",
+				"smoke_detector": "Smoke detector",
+				"flood_detector": "Flood detector",
+				"gas_detector": "Gas detector",
+				"thermostat": "Thermostat",
+				"thermometer": "Thermometer",
+				"lock": "Lock",
+				"tamper": "Tamper",
+				"button": "Button",
+				"key_fob": "Key fob",
+				"electricity_meter_with_pulse_output": "Electricity meter with pulse output",
+				"radio_module": "Radio module",
+				"valve": "Valve",
+				"custom": "Custom",
+				"other": "Other",
+				"empty": "Empty"
+			}
+		},
+		"partially_arming_mode": {
+			"options": {
+				"not_supported": "Not supported",
+				"night_mode": "Night",
+				"home_mode": "Home"
+			}
+		}
+	},
+	"device": {
+		"keypad": {
+			"name": "Keypad (device {deviceNo})"
+		},
+		"keypad_with_door_opening_detector": {
+			"name": "Keypad with door opening detector (device {deviceNo})"
+		},
+		"outdoor_siren": {
+			"name": "Outdoor siren (device {deviceNo})"
+		},
+		"indoor_siren": {
+			"name": "Indoor siren (device {deviceNo})"
+		},
+		"motion_detector": {
+			"name": "Motion detector (device {deviceNo})"
+		},
+		"window_opening_detector": {
+			"name": "Window opening detector (device {deviceNo})"
+		},
+		"door_opening_detector": {
+			"name": "Door opening detector (device {deviceNo})"
+		},
+		"garage_door_opening_detector": {
+			"name": "Garage door opening detector (device {deviceNo})"
+		},
+		"glass_break_detector": {
+			"name": "Glass break detector (device {deviceNo})"
+		},
+		"smoke_detector": {
+			"name": "Smoke detector (device {deviceNo})"
+		},
+		"flood_detector": {
+			"name": "Flood detector (device {deviceNo})"
+		},
+		"gas_detector": {
+			"name": "Gas detector (device {deviceNo})"
+		},
+		"thermostat": {
+			"name": "Thermostat (device {deviceNo})"
+		},
+		"thermometer": {
+			"name": "Thermometer (device {deviceNo})"
+		},
+		"lock": {
+			"name": "Lock (device {deviceNo})"
+		},
+		"tamper": {
+			"name": "Tamper (device {deviceNo})"
+		},
+		"button": {
+			"name": "Button (device {deviceNo})"
+		},
+		"key_fob": {
+			"name": "Key fob (device {deviceNo})"
+		},
+		"electricity_meter_with_pulse_output": {
+			"name": "Electricity meter with pulse output (device {deviceNo})"
+		},
+		"radio_module": {
+			"name": "Radio module (device {deviceNo})"
+		},
+		"valve": {
+			"name": "Valve (device {deviceNo})"
+		},
+		"custom": {
+			"name": "Custom (device {deviceNo})"
+		},
+		"other": {
+			"name": "Other (device {deviceNo})"
+		},
+		"empty": {
+			"name": "Empty (device {deviceNo})"
+		},
+		"section": {
+			"name": "Section {sectionNo}"
+		}
+	},
+	"entity": {
+		"binary_sensor": {
+			"battery_problem": {
+				"name": "Battery problem"
+			},
+			"device_state_motion": {
+				"name": "Motion"
+			},
+			"device_state_window": {
+				"name": "Window"
+			},
+			"device_state_door": {
+				"name": "Door"
+			},
+			"device_state_garage_door": {
+				"name": "Garage door"
+			},
+			"device_state_glass": {
+				"name": "Glass"
+			},
+			"device_state_moisture": {
+				"name": "Moisture"
+			},
+			"device_state_gas": {
+				"name": "Gas"
+			},
+			"device_state_smoke": {
+				"name": "Smoke"
+			},
+			"device_state_lock": {
+				"name": "Lock"
+			},
+			"device_state_tamper": {
+				"name": "Tamper"
+			},
+			"device_state_thermostat": {
+				"name": "Thermostat"
+			},
+			"device_state_thermometer": {
+				"name": "Thermometer"
+			},
+			"device_state_indoor_siren_button": {
+				"name": "Button"
+			},
+			"device_state_button": {
+				"name": "Button"
+			},
+			"device_state_valve": {
+				"name": "Valve"
+			},
+			"device_state_custom": {
+				"name": "Custom"
+			},
+			"fire": {
+				"name": "Fire"
+			},
+			"gsm_signal": {
+				"name": "GSM signal"
+			},
+			"lan_connection": {
+				"name": "LAN connection"
+			},
+			"power_supple": {
+				"name": "Power supply"
+			},
+			"problem": {
+				"name": "Problem"
+			}
+		},
+		"event": {
+			"login": {
+				"name": "Login",
+				"state_attributes": {
+					"event_type": {
+						"state": {
+							"wrong_code": "Wrong code"
+						}
+					}
+				}
+			}
+		},
+		"sensor": {
+			"battery_level": {
+				"name": "Battery level"
+			},
+			"battery_standby_voltage": {
+				"name": "Battery standby voltage"
+			},
+			"battery_load_voltage": {
+				"name": "Battery load voltage"
+			},
+			"bus_1_devices_loss": {
+				"name": "BUS 1 devices loss"
+			},
+			"bus_2_devices_loss": {
+				"name": "BUS 2 devices loss"
+			},
+			"bus_3_devices_loss": {
+				"name": "BUS 3 devices loss"
+			},
+			"bus_1_voltage": {
+				"name": "BUS 1 voltage"
+			},
+			"bus_2_voltage": {
+				"name": "BUS 2 voltage"
+			},
+			"bus_3_voltage": {
+				"name": "BUS 3 voltage"
+			},
+			"gsm_signal_strength": {
+				"name": "GSM signal strength"
+			},
+			"lan_ip": {
+				"name": "LAN IP"
+			},
+			"pulses": {
+				"name": "Pulses"
+			},
+			"signal_strength": {
+				"name": "Signal strength"
+			},
+			"temperature": {
+				"name": "Temperature"
+			}
+		},
+		"switch": {
+			"pg_output": {
+				"name": "Programovateľný výstup {pgOutputNo}"
+			}
+		}
+	},
+	"services": {
+		"reset_problem": {
+			"name": "Reset problem",
+			"description": "Reset problem."
+		}
+	}
+}

@@ -1,0 +1,784 @@
+{
+	"config": {
+		"step": {
+			"user": {
+				"title": "jablotron100-api-HASS",
+				"description": "For sensor understøttelse skal der bruges en administratorkode og det samlet antal enheder",
+				"data": {
+					"serial_port": "Serielport",
+					"password": "Kode",
+					"number_of_devices": "Antal enheder",
+					"number_of_pg_outputs": "Antal programmerbare udgange"
+				}
+			},
+			"devices": {
+				"title": "jablotron100-api-HASS / Enheder",
+				"description": "Vælg enheds type",
+				"data": {
+					"device_001": "Enhed 1",
+					"device_002": "Enhed 2",
+					"device_003": "Enhed 3",
+					"device_004": "Enhed 4",
+					"device_005": "Enhed 5",
+					"device_006": "Enhed 6",
+					"device_007": "Enhed 7",
+					"device_008": "Enhed 8",
+					"device_009": "Enhed 9",
+					"device_010": "Enhed 10",
+					"device_011": "Enhed 11",
+					"device_012": "Enhed 12",
+					"device_013": "Enhed 13",
+					"device_014": "Enhed 14",
+					"device_015": "Enhed 15",
+					"device_016": "Enhed 16",
+					"device_017": "Enhed 17",
+					"device_018": "Enhed 18",
+					"device_019": "Enhed 19",
+					"device_020": "Enhed 20",
+					"device_021": "Enhed 21",
+					"device_022": "Enhed 22",
+					"device_023": "Enhed 23",
+					"device_024": "Enhed 24",
+					"device_025": "Enhed 25",
+					"device_026": "Enhed 26",
+					"device_027": "Enhed 27",
+					"device_028": "Enhed 28",
+					"device_029": "Enhed 29",
+					"device_030": "Enhed 30",
+					"device_031": "Enhed 31",
+					"device_032": "Enhed 32",
+					"device_033": "Enhed 33",
+					"device_034": "Enhed 34",
+					"device_035": "Enhed 35",
+					"device_036": "Enhed 36",
+					"device_037": "Enhed 37",
+					"device_038": "Enhed 38",
+					"device_039": "Enhed 39",
+					"device_040": "Enhed 40",
+					"device_041": "Enhed 41",
+					"device_042": "Enhed 42",
+					"device_043": "Enhed 43",
+					"device_044": "Enhed 44",
+					"device_045": "Enhed 45",
+					"device_046": "Enhed 46",
+					"device_047": "Enhed 47",
+					"device_048": "Enhed 48",
+					"device_049": "Enhed 49",
+					"device_050": "Enhed 50",
+					"device_051": "Enhed 51",
+					"device_052": "Enhed 52",
+					"device_053": "Enhed 53",
+					"device_054": "Enhed 54",
+					"device_055": "Enhed 55",
+					"device_056": "Enhed 56",
+					"device_057": "Enhed 57",
+					"device_058": "Enhed 58",
+					"device_059": "Enhed 59",
+					"device_060": "Enhed 60",
+					"device_061": "Enhed 61",
+					"device_062": "Enhed 62",
+					"device_063": "Enhed 63",
+					"device_064": "Enhed 64",
+					"device_065": "Enhed 65",
+					"device_066": "Enhed 66",
+					"device_067": "Enhed 67",
+					"device_068": "Enhed 68",
+					"device_069": "Enhed 69",
+					"device_070": "Enhed 70",
+					"device_071": "Enhed 71",
+					"device_072": "Enhed 72",
+					"device_073": "Enhed 73",
+					"device_074": "Enhed 74",
+					"device_075": "Enhed 75",
+					"device_076": "Enhed 76",
+					"device_077": "Enhed 77",
+					"device_078": "Enhed 78",
+					"device_079": "Enhed 79",
+					"device_080": "Enhed 80",
+					"device_081": "Enhed 81",
+					"device_082": "Enhed 82",
+					"device_083": "Enhed 83",
+					"device_084": "Enhed 84",
+					"device_085": "Enhed 85",
+					"device_086": "Enhed 86",
+					"device_087": "Enhed 87",
+					"device_088": "Enhed 88",
+					"device_089": "Enhed 89",
+					"device_090": "Enhed 90",
+					"device_091": "Enhed 91",
+					"device_092": "Enhed 92",
+					"device_093": "Enhed 93",
+					"device_094": "Enhed 94",
+					"device_095": "Enhed 95",
+					"device_096": "Enhed 96",
+					"device_097": "Enhed 97",
+					"device_098": "Enhed 98",
+					"device_099": "Enhed 99",
+					"device_100": "Enhed 100",
+					"device_101": "Enhed 101",
+					"device_102": "Enhed 102",
+					"device_103": "Enhed 103",
+					"device_104": "Enhed 104",
+					"device_105": "Enhed 105",
+					"device_106": "Enhed 106",
+					"device_107": "Enhed 107",
+					"device_108": "Enhed 108",
+					"device_109": "Enhed 109",
+					"device_110": "Enhed 110",
+					"device_111": "Enhed 111",
+					"device_112": "Enhed 112",
+					"device_113": "Enhed 113",
+					"device_114": "Enhed 114",
+					"device_115": "Enhed 115",
+					"device_116": "Enhed 116",
+					"device_117": "Enhed 117",
+					"device_118": "Enhed 118",
+					"device_119": "Enhed 119",
+					"device_120": "Enhed 120",
+					"device_121": "Enhed 121",
+					"device_122": "Enhed 122",
+					"device_123": "Enhed 123",
+					"device_124": "Enhed 124",
+					"device_125": "Enhed 125",
+					"device_126": "Enhed 126",
+					"device_127": "Enhed 127",
+					"device_128": "Enhed 128",
+					"device_129": "Enhed 129",
+					"device_130": "Enhed 130",
+					"device_131": "Enhed 131",
+					"device_132": "Enhed 132",
+					"device_133": "Enhed 133",
+					"device_134": "Enhed 134",
+					"device_135": "Enhed 135",
+					"device_136": "Enhed 136",
+					"device_137": "Enhed 137",
+					"device_138": "Enhed 138",
+					"device_139": "Enhed 139",
+					"device_140": "Enhed 140",
+					"device_141": "Enhed 141",
+					"device_142": "Enhed 142",
+					"device_143": "Enhed 143",
+					"device_144": "Enhed 144",
+					"device_145": "Enhed 145",
+					"device_146": "Enhed 146",
+					"device_147": "Enhed 147",
+					"device_148": "Enhed 148",
+					"device_149": "Enhed 149",
+					"device_150": "Enhed 150",
+					"device_151": "Enhed 151",
+					"device_152": "Enhed 152",
+					"device_153": "Enhed 153",
+					"device_154": "Enhed 154",
+					"device_155": "Enhed 155",
+					"device_156": "Enhed 156",
+					"device_157": "Enhed 157",
+					"device_158": "Enhed 158",
+					"device_159": "Enhed 159",
+					"device_160": "Enhed 160",
+					"device_161": "Enhed 161",
+					"device_162": "Enhed 162",
+					"device_163": "Enhed 163",
+					"device_164": "Enhed 164",
+					"device_165": "Enhed 165",
+					"device_166": "Enhed 166",
+					"device_167": "Enhed 167",
+					"device_168": "Enhed 168",
+					"device_169": "Enhed 169",
+					"device_170": "Enhed 170",
+					"device_171": "Enhed 171",
+					"device_172": "Enhed 172",
+					"device_173": "Enhed 173",
+					"device_174": "Enhed 174",
+					"device_175": "Enhed 175",
+					"device_176": "Enhed 176",
+					"device_177": "Enhed 177",
+					"device_178": "Enhed 178",
+					"device_179": "Enhed 179",
+					"device_180": "Enhed 180",
+					"device_181": "Enhed 181",
+					"device_182": "Enhed 182",
+					"device_183": "Enhed 183",
+					"device_184": "Enhed 184",
+					"device_185": "Enhed 185",
+					"device_186": "Enhed 186",
+					"device_187": "Enhed 187",
+					"device_188": "Enhed 188",
+					"device_189": "Enhed 189",
+					"device_190": "Enhed 190",
+					"device_191": "Enhed 191",
+					"device_192": "Enhed 192",
+					"device_193": "Enhed 193",
+					"device_194": "Enhed 194",
+					"device_195": "Enhed 195",
+					"device_196": "Enhed 196",
+					"device_197": "Enhed 197",
+					"device_198": "Enhed 198",
+					"device_199": "Enhed 199",
+					"device_200": "Enhed 200",
+					"device_201": "Enhed 201",
+					"device_202": "Enhed 202",
+					"device_203": "Enhed 203",
+					"device_204": "Enhed 204",
+					"device_205": "Enhed 205",
+					"device_206": "Enhed 206",
+					"device_207": "Enhed 207",
+					"device_208": "Enhed 208",
+					"device_209": "Enhed 209",
+					"device_210": "Enhed 210",
+					"device_211": "Enhed 211",
+					"device_212": "Enhed 212",
+					"device_213": "Enhed 213",
+					"device_214": "Enhed 214",
+					"device_215": "Enhed 215",
+					"device_216": "Enhed 216",
+					"device_217": "Enhed 217",
+					"device_218": "Enhed 218",
+					"device_219": "Enhed 219",
+					"device_220": "Enhed 220",
+					"device_221": "Enhed 221",
+					"device_222": "Enhed 222",
+					"device_223": "Enhed 223",
+					"device_224": "Enhed 224",
+					"device_225": "Enhed 225",
+					"device_226": "Enhed 226",
+					"device_227": "Enhed 227",
+					"device_228": "Enhed 228",
+					"device_229": "Enhed 229",
+					"device_230": "Enhed 230"
+				}
+			},
+			"reconfigure_settings": {
+				"title": "jablotron100-api-HASS",
+				"data": {
+					"serial_port": "Serielport",
+					"password": "Kode",
+					"number_of_devices": "Antal enheder",
+					"number_of_pg_outputs": "Antal programmerbare udgange"
+				}
+			},
+			"reconfigure_devices": {
+				"title": "jablotron100-api-HASS / Enheder",
+				"data": {
+					"device_001": "Enhed 1",
+					"device_002": "Enhed 2",
+					"device_003": "Enhed 3",
+					"device_004": "Enhed 4",
+					"device_005": "Enhed 5",
+					"device_006": "Enhed 6",
+					"device_007": "Enhed 7",
+					"device_008": "Enhed 8",
+					"device_009": "Enhed 9",
+					"device_010": "Enhed 10",
+					"device_011": "Enhed 11",
+					"device_012": "Enhed 12",
+					"device_013": "Enhed 13",
+					"device_014": "Enhed 14",
+					"device_015": "Enhed 15",
+					"device_016": "Enhed 16",
+					"device_017": "Enhed 17",
+					"device_018": "Enhed 18",
+					"device_019": "Enhed 19",
+					"device_020": "Enhed 20",
+					"device_021": "Enhed 21",
+					"device_022": "Enhed 22",
+					"device_023": "Enhed 23",
+					"device_024": "Enhed 24",
+					"device_025": "Enhed 25",
+					"device_026": "Enhed 26",
+					"device_027": "Enhed 27",
+					"device_028": "Enhed 28",
+					"device_029": "Enhed 29",
+					"device_030": "Enhed 30",
+					"device_031": "Enhed 31",
+					"device_032": "Enhed 32",
+					"device_033": "Enhed 33",
+					"device_034": "Enhed 34",
+					"device_035": "Enhed 35",
+					"device_036": "Enhed 36",
+					"device_037": "Enhed 37",
+					"device_038": "Enhed 38",
+					"device_039": "Enhed 39",
+					"device_040": "Enhed 40",
+					"device_041": "Enhed 41",
+					"device_042": "Enhed 42",
+					"device_043": "Enhed 43",
+					"device_044": "Enhed 44",
+					"device_045": "Enhed 45",
+					"device_046": "Enhed 46",
+					"device_047": "Enhed 47",
+					"device_048": "Enhed 48",
+					"device_049": "Enhed 49",
+					"device_050": "Enhed 50",
+					"device_051": "Enhed 51",
+					"device_052": "Enhed 52",
+					"device_053": "Enhed 53",
+					"device_054": "Enhed 54",
+					"device_055": "Enhed 55",
+					"device_056": "Enhed 56",
+					"device_057": "Enhed 57",
+					"device_058": "Enhed 58",
+					"device_059": "Enhed 59",
+					"device_060": "Enhed 60",
+					"device_061": "Enhed 61",
+					"device_062": "Enhed 62",
+					"device_063": "Enhed 63",
+					"device_064": "Enhed 64",
+					"device_065": "Enhed 65",
+					"device_066": "Enhed 66",
+					"device_067": "Enhed 67",
+					"device_068": "Enhed 68",
+					"device_069": "Enhed 69",
+					"device_070": "Enhed 70",
+					"device_071": "Enhed 71",
+					"device_072": "Enhed 72",
+					"device_073": "Enhed 73",
+					"device_074": "Enhed 74",
+					"device_075": "Enhed 75",
+					"device_076": "Enhed 76",
+					"device_077": "Enhed 77",
+					"device_078": "Enhed 78",
+					"device_079": "Enhed 79",
+					"device_080": "Enhed 80",
+					"device_081": "Enhed 81",
+					"device_082": "Enhed 82",
+					"device_083": "Enhed 83",
+					"device_084": "Enhed 84",
+					"device_085": "Enhed 85",
+					"device_086": "Enhed 86",
+					"device_087": "Enhed 87",
+					"device_088": "Enhed 88",
+					"device_089": "Enhed 89",
+					"device_090": "Enhed 90",
+					"device_091": "Enhed 91",
+					"device_092": "Enhed 92",
+					"device_093": "Enhed 93",
+					"device_094": "Enhed 94",
+					"device_095": "Enhed 95",
+					"device_096": "Enhed 96",
+					"device_097": "Enhed 97",
+					"device_098": "Enhed 98",
+					"device_099": "Enhed 99",
+					"device_100": "Enhed 100",
+					"device_101": "Enhed 101",
+					"device_102": "Enhed 102",
+					"device_103": "Enhed 103",
+					"device_104": "Enhed 104",
+					"device_105": "Enhed 105",
+					"device_106": "Enhed 106",
+					"device_107": "Enhed 107",
+					"device_108": "Enhed 108",
+					"device_109": "Enhed 109",
+					"device_110": "Enhed 110",
+					"device_111": "Enhed 111",
+					"device_112": "Enhed 112",
+					"device_113": "Enhed 113",
+					"device_114": "Enhed 114",
+					"device_115": "Enhed 115",
+					"device_116": "Enhed 116",
+					"device_117": "Enhed 117",
+					"device_118": "Enhed 118",
+					"device_119": "Enhed 119",
+					"device_120": "Enhed 120",
+					"device_121": "Enhed 121",
+					"device_122": "Enhed 122",
+					"device_123": "Enhed 123",
+					"device_124": "Enhed 124",
+					"device_125": "Enhed 125",
+					"device_126": "Enhed 126",
+					"device_127": "Enhed 127",
+					"device_128": "Enhed 128",
+					"device_129": "Enhed 129",
+					"device_130": "Enhed 130",
+					"device_131": "Enhed 131",
+					"device_132": "Enhed 132",
+					"device_133": "Enhed 133",
+					"device_134": "Enhed 134",
+					"device_135": "Enhed 135",
+					"device_136": "Enhed 136",
+					"device_137": "Enhed 137",
+					"device_138": "Enhed 138",
+					"device_139": "Enhed 139",
+					"device_140": "Enhed 140",
+					"device_141": "Enhed 141",
+					"device_142": "Enhed 142",
+					"device_143": "Enhed 143",
+					"device_144": "Enhed 144",
+					"device_145": "Enhed 145",
+					"device_146": "Enhed 146",
+					"device_147": "Enhed 147",
+					"device_148": "Enhed 148",
+					"device_149": "Enhed 149",
+					"device_150": "Enhed 150",
+					"device_151": "Enhed 151",
+					"device_152": "Enhed 152",
+					"device_153": "Enhed 153",
+					"device_154": "Enhed 154",
+					"device_155": "Enhed 155",
+					"device_156": "Enhed 156",
+					"device_157": "Enhed 157",
+					"device_158": "Enhed 158",
+					"device_159": "Enhed 159",
+					"device_160": "Enhed 160",
+					"device_161": "Enhed 161",
+					"device_162": "Enhed 162",
+					"device_163": "Enhed 163",
+					"device_164": "Enhed 164",
+					"device_165": "Enhed 165",
+					"device_166": "Enhed 166",
+					"device_167": "Enhed 167",
+					"device_168": "Enhed 168",
+					"device_169": "Enhed 169",
+					"device_170": "Enhed 170",
+					"device_171": "Enhed 171",
+					"device_172": "Enhed 172",
+					"device_173": "Enhed 173",
+					"device_174": "Enhed 174",
+					"device_175": "Enhed 175",
+					"device_176": "Enhed 176",
+					"device_177": "Enhed 177",
+					"device_178": "Enhed 178",
+					"device_179": "Enhed 179",
+					"device_180": "Enhed 180",
+					"device_181": "Enhed 181",
+					"device_182": "Enhed 182",
+					"device_183": "Enhed 183",
+					"device_184": "Enhed 184",
+					"device_185": "Enhed 185",
+					"device_186": "Enhed 186",
+					"device_187": "Enhed 187",
+					"device_188": "Enhed 188",
+					"device_189": "Enhed 189",
+					"device_190": "Enhed 190",
+					"device_191": "Enhed 191",
+					"device_192": "Enhed 192",
+					"device_193": "Enhed 193",
+					"device_194": "Enhed 194",
+					"device_195": "Enhed 195",
+					"device_196": "Enhed 196",
+					"device_197": "Enhed 197",
+					"device_198": "Enhed 198",
+					"device_199": "Enhed 199",
+					"device_200": "Enhed 200",
+					"device_201": "Enhed 201",
+					"device_202": "Enhed 202",
+					"device_203": "Enhed 203",
+					"device_204": "Enhed 204",
+					"device_205": "Enhed 205",
+					"device_206": "Enhed 206",
+					"device_207": "Enhed 207",
+					"device_208": "Enhed 208",
+					"device_209": "Enhed 209",
+					"device_210": "Enhed 210",
+					"device_211": "Enhed 211",
+					"device_212": "Enhed 212",
+					"device_213": "Enhed 213",
+					"device_214": "Enhed 214",
+					"device_215": "Enhed 215",
+					"device_216": "Enhed 216",
+					"device_217": "Enhed 217",
+					"device_218": "Enhed 218",
+					"device_219": "Enhed 219",
+					"device_220": "Enhed 220",
+					"device_221": "Enhed 221",
+					"device_222": "Enhed 222",
+					"device_223": "Enhed 223",
+					"device_224": "Enhed 224",
+					"device_225": "Enhed 225",
+					"device_226": "Enhed 226",
+					"device_227": "Enhed 227",
+					"device_228": "Enhed 228",
+					"device_229": "Enhed 229",
+					"device_230": "Enhed 230"
+				}
+			}
+		},
+		"error": {
+			"service_unavailable": "Jablotron er ikke tilgænglig",
+			"model_not_detected": "Jablotron model ikke fundet",
+			"model_not_supported": "Jablotron model understøttes ikke"
+		},
+		"abort": {
+			"already_configured": "Jablotron er allerede konfigureret",
+			"reconfigure_successful": "Jablotron blev genkonfigureret"
+		}
+	},
+	"options": {
+		"step": {
+			"init": {
+				"menu_options": {
+					"options": "Indstillinger",
+					"debug": "Fejlsøgning"
+				}
+			},
+			"options": {
+				"title": "Indstillinger",
+				"data": {
+					"partially_arming_mode": "Delvistilkobling",
+					"require_code_to_arm": "Kræver kode for at tilkoble",
+					"require_code_to_disarm": "Kræver kode for at frakoble"
+				}
+			},
+			"debug": {
+				"title": "Fejlsøgning",
+				"data": {
+					"log_all_incoming_packets": "Log alle indgående pakker",
+					"log_all_outcoming_packets": "Log alle udgående pakker",
+					"log_sections_packets": "Log sektions pakker",
+					"log_devices_packets": "Log enheds pakker",
+					"log_pg_outputs_packets": "Log programmerbareudganges pakker"
+				}
+			}
+		}
+	},
+	"selector": {
+		"device_type": {
+			"options": {
+				"keypad": "Betjeningspanel",
+				"keypad_with_door_opening_detector": "Betjeningspanel med Dørsensor",
+				"outdoor_siren": "Udendørs sirene",
+				"indoor_siren": "Indendørs sirene",
+				"motion_detector": "Bevægelsessensor",
+				"window_opening_detector": "Vinduesensor",
+				"door_opening_detector": "Dørsensor",
+				"garage_door_opening_detector": "Garagedørsensor",
+				"glass_break_detector": "Glasbrudssensor",
+				"smoke_detector": "Røgsensor",
+				"flood_detector": "Gulvsensor",
+				"gas_detector": "Gassensor",
+				"thermostat": "Termostat",
+				"thermometer": "Termometer",
+				"lock": "Lås",
+				"tamper": "Sabotage",
+				"button": "Knap",
+				"key_fob": "Nøglering",
+				"electricity_meter_with_pulse_output": "Elmåler med pulsudgang",
+				"radio_module": "Radio modul",
+				"valve": "Ventil",
+				"custom": "Tilpasset",
+				"other": "Anden",
+				"empty": "Tom"
+			}
+		},
+		"partially_arming_mode": {
+			"options": {
+				"not_supported": "Ikke understøttet",
+				"night_mode": "Nat",
+				"home_mode": "Hjemme"
+			}
+		}
+	},
+	"device": {
+		"keypad": {
+			"name": "Betjeningspanel (enhed {deviceNo})"
+		},
+		"keypad_with_door_opening_detector": {
+			"name": "Betjeningspanel med Dørsensor (enhed {deviceNo})"
+		},
+		"outdoor_siren": {
+			"name": "Udendørs sirene (enhed {deviceNo})"
+		},
+		"indoor_siren": {
+			"name": "Indendørs sirene (enhed {deviceNo})"
+		},
+		"motion_detector": {
+			"name": "Bevægelsessensor (enhed {deviceNo})"
+		},
+		"window_opening_detector": {
+			"name": "Vinduesensor (enhed {deviceNo})"
+		},
+		"door_opening_detector": {
+			"name": "Dørsensor (enhed {deviceNo})"
+		},
+		"garage_door_opening_detector": {
+			"name": "Garagedørsensor (enhed {deviceNo})"
+		},
+		"glass_break_detector": {
+			"name": "Glasbrudssensor (enhed {deviceNo})"
+		},
+		"smoke_detector": {
+			"name": "Røgsensor (enhed {deviceNo})"
+		},
+		"flood_detector": {
+			"name": "Gulvsensor (enhed {deviceNo})"
+		},
+		"gas_detector": {
+			"name": "Gassensor (enhed {deviceNo})"
+		},
+		"thermostat": {
+			"name": "Termostat (enhed {deviceNo})"
+		},
+		"thermometer": {
+			"name": "Termometer (enhed {deviceNo})"
+		},
+		"lock": {
+			"name": "Lås (enhed {deviceNo})"
+		},
+		"tamper": {
+			"name": "Sabotage (enhed {deviceNo})"
+		},
+		"button": {
+			"name": "Knap (enhed {deviceNo})"
+		},
+		"key_fob": {
+			"name": "Nøglering (enhed {deviceNo})"
+		},
+		"electricity_meter_with_pulse_output": {
+			"name": "Elmåler med pulsudgang (enhed {deviceNo})"
+		},
+		"radio_module": {
+			"name": "Radio modul (enhed {deviceNo})"
+		},
+		"valve": {
+			"name": "Ventil (enhed {deviceNo})"
+		},
+		"custom": {
+			"name": "Tilpasset (enhed {deviceNo})"
+		},
+		"other": {
+			"name": "Anden (enhed {deviceNo})"
+		},
+		"empty": {
+			"name": "Tom (enhed {deviceNo})"
+		},
+		"section": {
+			"name": "Sektion {sectionNo}"
+		}
+	},
+	"entity": {
+		"binary_sensor": {
+			"battery_problem": {
+				"name": "Batteri fejl"
+			},
+			"device_state_motion": {
+				"name": "Bevægelse"
+			},
+			"device_state_window": {
+				"name": "Vindue"
+			},
+			"device_state_door": {
+				"name": "Dør"
+			},
+			"device_state_garage_door": {
+				"name": "Garagedør"
+			},
+			"device_state_glass": {
+				"name": "Glas"
+			},
+			"device_state_moisture": {
+				"name": "Fugt"
+			},
+			"device_state_gas": {
+				"name": "Gas"
+			},
+			"device_state_smoke": {
+				"name": "Røg"
+			},
+			"device_state_lock": {
+				"name": "Lås"
+			},
+			"device_state_tamper": {
+				"name": "Sabotage"
+			},
+			"device_state_thermostat": {
+				"name": "Termostat"
+			},
+			"device_state_thermometer": {
+				"name": "Termometer"
+			},
+			"device_state_indoor_siren_button": {
+				"name": "Knap indendørssirene"
+			},
+			"device_state_button": {
+				"name": "Knap"
+			},
+			"device_state_valve": {
+				"name": "Ventil"
+			},
+			"device_state_custom": {
+				"name": "Tilpasset"
+			},
+			"fire": {
+				"name": "Brand"
+			},
+			"gsm_signal": {
+				"name": "GSM signal"
+			},
+			"lan_connection": {
+				"name": "LAN forbindelse"
+			},
+			"power_supple": {
+				"name": "Strømforsyning"
+			},
+			"problem": {
+				"name": "Problem"
+			}
+		},
+		"event": {
+			"login": {
+				"name": "Login",
+				"state_attributes": {
+					"event_type": {
+						"state": {
+							"wrong_code": "Forkert kode"
+						}
+					}
+				}
+			}
+		},
+		"sensor": {
+			"battery_level": {
+				"name": "Batteri niveau"
+			},
+			"battery_standby_voltage": {
+				"name": "Batteri standby spænding"
+			},
+			"battery_load_voltage": {
+				"name": "Batteri load spænding"
+			},
+			"bus_1_devices_loss": {
+				"name": "BUS 1 enheder tabt"
+			},
+			"bus_2_devices_loss": {
+				"name": "BUS 2 enheder tabt"
+			},
+			"bus_3_devices_loss": {
+				"name": "BUS 3 enheder tabt"
+			},
+			"bus_1_voltage": {
+				"name": "BUS 1 spænding"
+			},
+			"bus_2_voltage": {
+				"name": "BUS 2 spænding"
+			},
+			"bus_3_voltage": {
+				"name": "BUS 3 spænding"
+			},
+			"gsm_signal_strength": {
+				"name": "GSM signal styrke"
+			},
+			"lan_ip": {
+				"name": "LAN IP"
+			},
+			"pulses": {
+				"name": "Pulser"
+			},
+			"signal_strength": {
+				"name": "Signal styrke"
+			},
+			"temperature": {
+				"name": "Temperatur"
+			}
+		},
+		"switch": {
+			"pg_output": {
+				"name": "PG output {pgOutputNo}"
+			}
+		}
+	},
+	"services": {
+		"reset_problem": {
+			"name": "Reset problem",
+			"description": "Reset problem."
+		}
+	}
+}

@@ -1,0 +1,7 @@
+{
+  "name": "jablotron100-api-HASS",
+  "content_in_root": false,
+  "domains": ["jablotron100_api_hass"],
+  "homeassistant": "2024.12.0",
+  "render_readme": true
+}

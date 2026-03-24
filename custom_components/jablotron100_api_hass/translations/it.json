@@ -1,0 +1,784 @@
+{
+	"config": {
+		"step": {
+			"user": {
+				"title": "jablotron100-api-HASS",
+				"description": "Per abilitare il supporto ai dispositivi, inserire il codice dell'amministratore e il numero totale di dispositivi",
+				"data": {
+					"serial_port": "Porta seriale",
+					"password": "Codice",
+					"number_of_devices": "Numero di dispositivi",
+					"number_of_pg_outputs": "Numero di uscite programmabili PG"
+				}
+			},
+			"devices": {
+				"title": "jablotron100-api-HASS / Dispositivi",
+				"description": "Specificare il tipo per ogni dispositivo",
+				"data": {
+					"device_001": "Dispositivo 1",
+					"device_002": "Dispositivo 2",
+					"device_003": "Dispositivo 3",
+					"device_004": "Dispositivo 4",
+					"device_005": "Dispositivo 5",
+					"device_006": "Dispositivo 6",
+					"device_007": "Dispositivo 7",
+					"device_008": "Dispositivo 8",
+					"device_009": "Dispositivo 9",
+					"device_010": "Dispositivo 10",
+					"device_011": "Dispositivo 11",
+					"device_012": "Dispositivo 12",
+					"device_013": "Dispositivo 13",
+					"device_014": "Dispositivo 14",
+					"device_015": "Dispositivo 15",
+					"device_016": "Dispositivo 16",
+					"device_017": "Dispositivo 17",
+					"device_018": "Dispositivo 18",
+					"device_019": "Dispositivo 19",
+					"device_020": "Dispositivo 20",
+					"device_021": "Dispositivo 21",
+					"device_022": "Dispositivo 22",
+					"device_023": "Dispositivo 23",
+					"device_024": "Dispositivo 24",
+					"device_025": "Dispositivo 25",
+					"device_026": "Dispositivo 26",
+					"device_027": "Dispositivo 27",
+					"device_028": "Dispositivo 28",
+					"device_029": "Dispositivo 29",
+					"device_030": "Dispositivo 30",
+					"device_031": "Dispositivo 31",
+					"device_032": "Dispositivo 32",
+					"device_033": "Dispositivo 33",
+					"device_034": "Dispositivo 34",
+					"device_035": "Dispositivo 35",
+					"device_036": "Dispositivo 36",
+					"device_037": "Dispositivo 37",
+					"device_038": "Dispositivo 38",
+					"device_039": "Dispositivo 39",
+					"device_040": "Dispositivo 40",
+					"device_041": "Dispositivo 41",
+					"device_042": "Dispositivo 42",
+					"device_043": "Dispositivo 43",
+					"device_044": "Dispositivo 44",
+					"device_045": "Dispositivo 45",
+					"device_046": "Dispositivo 46",
+					"device_047": "Dispositivo 47",
+					"device_048": "Dispositivo 48",
+					"device_049": "Dispositivo 49",
+					"device_050": "Dispositivo 50",
+					"device_051": "Dispositivo 51",
+					"device_052": "Dispositivo 52",
+					"device_053": "Dispositivo 53",
+					"device_054": "Dispositivo 54",
+					"device_055": "Dispositivo 55",
+					"device_056": "Dispositivo 56",
+					"device_057": "Dispositivo 57",
+					"device_058": "Dispositivo 58",
+					"device_059": "Dispositivo 59",
+					"device_060": "Dispositivo 60",
+					"device_061": "Dispositivo 61",
+					"device_062": "Dispositivo 62",
+					"device_063": "Dispositivo 63",
+					"device_064": "Dispositivo 64",
+					"device_065": "Dispositivo 65",
+					"device_066": "Dispositivo 66",
+					"device_067": "Dispositivo 67",
+					"device_068": "Dispositivo 68",
+					"device_069": "Dispositivo 69",
+					"device_070": "Dispositivo 70",
+					"device_071": "Dispositivo 71",
+					"device_072": "Dispositivo 72",
+					"device_073": "Dispositivo 73",
+					"device_074": "Dispositivo 74",
+					"device_075": "Dispositivo 75",
+					"device_076": "Dispositivo 76",
+					"device_077": "Dispositivo 77",
+					"device_078": "Dispositivo 78",
+					"device_079": "Dispositivo 79",
+					"device_080": "Dispositivo 80",
+					"device_081": "Dispositivo 81",
+					"device_082": "Dispositivo 82",
+					"device_083": "Dispositivo 83",
+					"device_084": "Dispositivo 84",
+					"device_085": "Dispositivo 85",
+					"device_086": "Dispositivo 86",
+					"device_087": "Dispositivo 87",
+					"device_088": "Dispositivo 88",
+					"device_089": "Dispositivo 89",
+					"device_090": "Dispositivo 90",
+					"device_091": "Dispositivo 91",
+					"device_092": "Dispositivo 92",
+					"device_093": "Dispositivo 93",
+					"device_094": "Dispositivo 94",
+					"device_095": "Dispositivo 95",
+					"device_096": "Dispositivo 96",
+					"device_097": "Dispositivo 97",
+					"device_098": "Dispositivo 98",
+					"device_099": "Dispositivo 99",
+					"device_100": "Dispositivo 100",
+					"device_101": "Dispositivo 101",
+					"device_102": "Dispositivo 102",
+					"device_103": "Dispositivo 103",
+					"device_104": "Dispositivo 104",
+					"device_105": "Dispositivo 105",
+					"device_106": "Dispositivo 106",
+					"device_107": "Dispositivo 107",
+					"device_108": "Dispositivo 108",
+					"device_109": "Dispositivo 109",
+					"device_110": "Dispositivo 110",
+					"device_111": "Dispositivo 111",
+					"device_112": "Dispositivo 112",
+					"device_113": "Dispositivo 113",
+					"device_114": "Dispositivo 114",
+					"device_115": "Dispositivo 115",
+					"device_116": "Dispositivo 116",
+					"device_117": "Dispositivo 117",
+					"device_118": "Dispositivo 118",
+					"device_119": "Dispositivo 119",
+					"device_120": "Dispositivo 120",
+					"device_121": "Dispositivo 121",
+					"device_122": "Dispositivo 122",
+					"device_123": "Dispositivo 123",
+					"device_124": "Dispositivo 124",
+					"device_125": "Dispositivo 125",
+					"device_126": "Dispositivo 126",
+					"device_127": "Dispositivo 127",
+					"device_128": "Dispositivo 128",
+					"device_129": "Dispositivo 129",
+					"device_130": "Dispositivo 130",
+					"device_131": "Dispositivo 131",
+					"device_132": "Dispositivo 132",
+					"device_133": "Dispositivo 133",
+					"device_134": "Dispositivo 134",
+					"device_135": "Dispositivo 135",
+					"device_136": "Dispositivo 136",
+					"device_137": "Dispositivo 137",
+					"device_138": "Dispositivo 138",
+					"device_139": "Dispositivo 139",
+					"device_140": "Dispositivo 140",
+					"device_141": "Dispositivo 141",
+					"device_142": "Dispositivo 142",
+					"device_143": "Dispositivo 143",
+					"device_144": "Dispositivo 144",
+					"device_145": "Dispositivo 145",
+					"device_146": "Dispositivo 146",
+					"device_147": "Dispositivo 147",
+					"device_148": "Dispositivo 148",
+					"device_149": "Dispositivo 149",
+					"device_150": "Dispositivo 150",
+					"device_151": "Dispositivo 151",
+					"device_152": "Dispositivo 152",
+					"device_153": "Dispositivo 153",
+					"device_154": "Dispositivo 154",
+					"device_155": "Dispositivo 155",
+					"device_156": "Dispositivo 156",
+					"device_157": "Dispositivo 157",
+					"device_158": "Dispositivo 158",
+					"device_159": "Dispositivo 159",
+					"device_160": "Dispositivo 160",
+					"device_161": "Dispositivo 161",
+					"device_162": "Dispositivo 162",
+					"device_163": "Dispositivo 163",
+					"device_164": "Dispositivo 164",
+					"device_165": "Dispositivo 165",
+					"device_166": "Dispositivo 166",
+					"device_167": "Dispositivo 167",
+					"device_168": "Dispositivo 168",
+					"device_169": "Dispositivo 169",
+					"device_170": "Dispositivo 170",
+					"device_171": "Dispositivo 171",
+					"device_172": "Dispositivo 172",
+					"device_173": "Dispositivo 173",
+					"device_174": "Dispositivo 174",
+					"device_175": "Dispositivo 175",
+					"device_176": "Dispositivo 176",
+					"device_177": "Dispositivo 177",
+					"device_178": "Dispositivo 178",
+					"device_179": "Dispositivo 179",
+					"device_180": "Dispositivo 180",
+					"device_181": "Dispositivo 181",
+					"device_182": "Dispositivo 182",
+					"device_183": "Dispositivo 183",
+					"device_184": "Dispositivo 184",
+					"device_185": "Dispositivo 185",
+					"device_186": "Dispositivo 186",
+					"device_187": "Dispositivo 187",
+					"device_188": "Dispositivo 188",
+					"device_189": "Dispositivo 189",
+					"device_190": "Dispositivo 190",
+					"device_191": "Dispositivo 191",
+					"device_192": "Dispositivo 192",
+					"device_193": "Dispositivo 193",
+					"device_194": "Dispositivo 194",
+					"device_195": "Dispositivo 195",
+					"device_196": "Dispositivo 196",
+					"device_197": "Dispositivo 197",
+					"device_198": "Dispositivo 198",
+					"device_199": "Dispositivo 199",
+					"device_200": "Dispositivo 200",
+					"device_201": "Dispositivo 201",
+					"device_202": "Dispositivo 202",
+					"device_203": "Dispositivo 203",
+					"device_204": "Dispositivo 204",
+					"device_205": "Dispositivo 205",
+					"device_206": "Dispositivo 206",
+					"device_207": "Dispositivo 207",
+					"device_208": "Dispositivo 208",
+					"device_209": "Dispositivo 209",
+					"device_210": "Dispositivo 210",
+					"device_211": "Dispositivo 211",
+					"device_212": "Dispositivo 212",
+					"device_213": "Dispositivo 213",
+					"device_214": "Dispositivo 214",
+					"device_215": "Dispositivo 215",
+					"device_216": "Dispositivo 216",
+					"device_217": "Dispositivo 217",
+					"device_218": "Dispositivo 218",
+					"device_219": "Dispositivo 219",
+					"device_220": "Dispositivo 220",
+					"device_221": "Dispositivo 221",
+					"device_222": "Dispositivo 222",
+					"device_223": "Dispositivo 223",
+					"device_224": "Dispositivo 224",
+					"device_225": "Dispositivo 225",
+					"device_226": "Dispositivo 226",
+					"device_227": "Dispositivo 227",
+					"device_228": "Dispositivo 228",
+					"device_229": "Dispositivo 229",
+					"device_230": "Dispositivo 230"
+				}
+			},
+			"reconfigure_settings": {
+				"title": "jablotron100-api-HASS",
+				"data": {
+					"serial_port": "Porta seriale",
+					"password": "Codice",
+					"number_of_devices": "Numero di dispositivi",
+					"number_of_pg_outputs": "Numero di uscite programmabili PG"
+				}
+			},
+			"reconfigure_devices": {
+				"title": "jablotron100-api-HASS / Dispositivi",
+				"data": {
+					"device_001": "Dispositivo 1",
+					"device_002": "Dispositivo 2",
+					"device_003": "Dispositivo 3",
+					"device_004": "Dispositivo 4",
+					"device_005": "Dispositivo 5",
+					"device_006": "Dispositivo 6",
+					"device_007": "Dispositivo 7",
+					"device_008": "Dispositivo 8",
+					"device_009": "Dispositivo 9",
+					"device_010": "Dispositivo 10",
+					"device_011": "Dispositivo 11",
+					"device_012": "Dispositivo 12",
+					"device_013": "Dispositivo 13",
+					"device_014": "Dispositivo 14",
+					"device_015": "Dispositivo 15",
+					"device_016": "Dispositivo 16",
+					"device_017": "Dispositivo 17",
+					"device_018": "Dispositivo 18",
+					"device_019": "Dispositivo 19",
+					"device_020": "Dispositivo 20",
+					"device_021": "Dispositivo 21",
+					"device_022": "Dispositivo 22",
+					"device_023": "Dispositivo 23",
+					"device_024": "Dispositivo 24",
+					"device_025": "Dispositivo 25",
+					"device_026": "Dispositivo 26",
+					"device_027": "Dispositivo 27",
+					"device_028": "Dispositivo 28",
+					"device_029": "Dispositivo 29",
+					"device_030": "Dispositivo 30",
+					"device_031": "Dispositivo 31",
+					"device_032": "Dispositivo 32",
+					"device_033": "Dispositivo 33",
+					"device_034": "Dispositivo 34",
+					"device_035": "Dispositivo 35",
+					"device_036": "Dispositivo 36",
+					"device_037": "Dispositivo 37",
+					"device_038": "Dispositivo 38",
+					"device_039": "Dispositivo 39",
+					"device_040": "Dispositivo 40",
+					"device_041": "Dispositivo 41",
+					"device_042": "Dispositivo 42",
+					"device_043": "Dispositivo 43",
+					"device_044": "Dispositivo 44",
+					"device_045": "Dispositivo 45",
+					"device_046": "Dispositivo 46",
+					"device_047": "Dispositivo 47",
+					"device_048": "Dispositivo 48",
+					"device_049": "Dispositivo 49",
+					"device_050": "Dispositivo 50",
+					"device_051": "Dispositivo 51",
+					"device_052": "Dispositivo 52",
+					"device_053": "Dispositivo 53",
+					"device_054": "Dispositivo 54",
+					"device_055": "Dispositivo 55",
+					"device_056": "Dispositivo 56",
+					"device_057": "Dispositivo 57",
+					"device_058": "Dispositivo 58",
+					"device_059": "Dispositivo 59",
+					"device_060": "Dispositivo 60",
+					"device_061": "Dispositivo 61",
+					"device_062": "Dispositivo 62",
+					"device_063": "Dispositivo 63",
+					"device_064": "Dispositivo 64",
+					"device_065": "Dispositivo 65",
+					"device_066": "Dispositivo 66",
+					"device_067": "Dispositivo 67",
+					"device_068": "Dispositivo 68",
+					"device_069": "Dispositivo 69",
+					"device_070": "Dispositivo 70",
+					"device_071": "Dispositivo 71",
+					"device_072": "Dispositivo 72",
+					"device_073": "Dispositivo 73",
+					"device_074": "Dispositivo 74",
+					"device_075": "Dispositivo 75",
+					"device_076": "Dispositivo 76",
+					"device_077": "Dispositivo 77",
+					"device_078": "Dispositivo 78",
+					"device_079": "Dispositivo 79",
+					"device_080": "Dispositivo 80",
+					"device_081": "Dispositivo 81",
+					"device_082": "Dispositivo 82",
+					"device_083": "Dispositivo 83",
+					"device_084": "Dispositivo 84",
+					"device_085": "Dispositivo 85",
+					"device_086": "Dispositivo 86",
+					"device_087": "Dispositivo 87",
+					"device_088": "Dispositivo 88",
+					"device_089": "Dispositivo 89",
+					"device_090": "Dispositivo 90",
+					"device_091": "Dispositivo 91",
+					"device_092": "Dispositivo 92",
+					"device_093": "Dispositivo 93",
+					"device_094": "Dispositivo 94",
+					"device_095": "Dispositivo 95",
+					"device_096": "Dispositivo 96",
+					"device_097": "Dispositivo 97",
+					"device_098": "Dispositivo 98",
+					"device_099": "Dispositivo 99",
+					"device_100": "Dispositivo 100",
+					"device_101": "Dispositivo 101",
+					"device_102": "Dispositivo 102",
+					"device_103": "Dispositivo 103",
+					"device_104": "Dispositivo 104",
+					"device_105": "Dispositivo 105",
+					"device_106": "Dispositivo 106",
+					"device_107": "Dispositivo 107",
+					"device_108": "Dispositivo 108",
+					"device_109": "Dispositivo 109",
+					"device_110": "Dispositivo 110",
+					"device_111": "Dispositivo 111",
+					"device_112": "Dispositivo 112",
+					"device_113": "Dispositivo 113",
+					"device_114": "Dispositivo 114",
+					"device_115": "Dispositivo 115",
+					"device_116": "Dispositivo 116",
+					"device_117": "Dispositivo 117",
+					"device_118": "Dispositivo 118",
+					"device_119": "Dispositivo 119",
+					"device_120": "Dispositivo 120",
+					"device_121": "Dispositivo 121",
+					"device_122": "Dispositivo 122",
+					"device_123": "Dispositivo 123",
+					"device_124": "Dispositivo 124",
+					"device_125": "Dispositivo 125",
+					"device_126": "Dispositivo 126",
+					"device_127": "Dispositivo 127",
+					"device_128": "Dispositivo 128",
+					"device_129": "Dispositivo 129",
+					"device_130": "Dispositivo 130",
+					"device_131": "Dispositivo 131",
+					"device_132": "Dispositivo 132",
+					"device_133": "Dispositivo 133",
+					"device_134": "Dispositivo 134",
+					"device_135": "Dispositivo 135",
+					"device_136": "Dispositivo 136",
+					"device_137": "Dispositivo 137",
+					"device_138": "Dispositivo 138",
+					"device_139": "Dispositivo 139",
+					"device_140": "Dispositivo 140",
+					"device_141": "Dispositivo 141",
+					"device_142": "Dispositivo 142",
+					"device_143": "Dispositivo 143",
+					"device_144": "Dispositivo 144",
+					"device_145": "Dispositivo 145",
+					"device_146": "Dispositivo 146",
+					"device_147": "Dispositivo 147",
+					"device_148": "Dispositivo 148",
+					"device_149": "Dispositivo 149",
+					"device_150": "Dispositivo 150",
+					"device_151": "Dispositivo 151",
+					"device_152": "Dispositivo 152",
+					"device_153": "Dispositivo 153",
+					"device_154": "Dispositivo 154",
+					"device_155": "Dispositivo 155",
+					"device_156": "Dispositivo 156",
+					"device_157": "Dispositivo 157",
+					"device_158": "Dispositivo 158",
+					"device_159": "Dispositivo 159",
+					"device_160": "Dispositivo 160",
+					"device_161": "Dispositivo 161",
+					"device_162": "Dispositivo 162",
+					"device_163": "Dispositivo 163",
+					"device_164": "Dispositivo 164",
+					"device_165": "Dispositivo 165",
+					"device_166": "Dispositivo 166",
+					"device_167": "Dispositivo 167",
+					"device_168": "Dispositivo 168",
+					"device_169": "Dispositivo 169",
+					"device_170": "Dispositivo 170",
+					"device_171": "Dispositivo 171",
+					"device_172": "Dispositivo 172",
+					"device_173": "Dispositivo 173",
+					"device_174": "Dispositivo 174",
+					"device_175": "Dispositivo 175",
+					"device_176": "Dispositivo 176",
+					"device_177": "Dispositivo 177",
+					"device_178": "Dispositivo 178",
+					"device_179": "Dispositivo 179",
+					"device_180": "Dispositivo 180",
+					"device_181": "Dispositivo 181",
+					"device_182": "Dispositivo 182",
+					"device_183": "Dispositivo 183",
+					"device_184": "Dispositivo 184",
+					"device_185": "Dispositivo 185",
+					"device_186": "Dispositivo 186",
+					"device_187": "Dispositivo 187",
+					"device_188": "Dispositivo 188",
+					"device_189": "Dispositivo 189",
+					"device_190": "Dispositivo 190",
+					"device_191": "Dispositivo 191",
+					"device_192": "Dispositivo 192",
+					"device_193": "Dispositivo 193",
+					"device_194": "Dispositivo 194",
+					"device_195": "Dispositivo 195",
+					"device_196": "Dispositivo 196",
+					"device_197": "Dispositivo 197",
+					"device_198": "Dispositivo 198",
+					"device_199": "Dispositivo 199",
+					"device_200": "Dispositivo 200",
+					"device_201": "Dispositivo 201",
+					"device_202": "Dispositivo 202",
+					"device_203": "Dispositivo 203",
+					"device_204": "Dispositivo 204",
+					"device_205": "Dispositivo 205",
+					"device_206": "Dispositivo 206",
+					"device_207": "Dispositivo 207",
+					"device_208": "Dispositivo 208",
+					"device_209": "Dispositivo 209",
+					"device_210": "Dispositivo 210",
+					"device_211": "Dispositivo 211",
+					"device_212": "Dispositivo 212",
+					"device_213": "Dispositivo 213",
+					"device_214": "Dispositivo 214",
+					"device_215": "Dispositivo 215",
+					"device_216": "Dispositivo 216",
+					"device_217": "Dispositivo 217",
+					"device_218": "Dispositivo 218",
+					"device_219": "Dispositivo 219",
+					"device_220": "Dispositivo 220",
+					"device_221": "Dispositivo 221",
+					"device_222": "Dispositivo 222",
+					"device_223": "Dispositivo 223",
+					"device_224": "Dispositivo 224",
+					"device_225": "Dispositivo 225",
+					"device_226": "Dispositivo 226",
+					"device_227": "Dispositivo 227",
+					"device_228": "Dispositivo 228",
+					"device_229": "Dispositivo 229",
+					"device_230": "Dispositivo 230"
+				}
+			}
+		},
+		"error": {
+			"service_unavailable": "Jablotron non è disponibile",
+			"model_not_detected": "Modello Jablotron non rilevato",
+			"model_not_supported": "Modello Jablotron non supportato"
+		},
+		"abort": {
+			"already_configured": "Jablotron è già configurato",
+			"reconfigure_successful": "Jablotron successfully reconfigured"
+		}
+	},
+	"options": {
+		"step": {
+			"init": {
+				"menu_options": {
+					"options": "Opzioni",
+					"debug": "Debugging"
+				}
+			},
+			"options": {
+				"title": "Opzioni",
+				"data": {
+					"partially_arming_mode": "Partially arming",
+					"require_code_to_arm": "Richiedi il codice per abilitare",
+					"require_code_to_disarm": "Richiedi il codice per disabilitare"
+				}
+			},
+			"debug": {
+				"title": "Debugging",
+				"data": {
+					"log_all_incoming_packets": "Registra tutti i pacchetti in entrata",
+					"log_all_outcoming_packets": "Registra tutti i pacchetti in uscita",
+					"log_sections_packets": "Registra i pacchetti relativi alle sezioni",
+					"log_devices_packets": "Registra i pacchetti relativi ai dispositivi",
+					"log_pg_outputs_packets": "Registra i pacchetti relativi alle uscite PG"
+				}
+			}
+		}
+	},
+	"selector": {
+		"device_type": {
+			"options": {
+				"keypad": "Keypad",
+				"keypad_with_door_opening_detector": "Keypad with door opening detector",
+				"outdoor_siren": "Outdoor siren",
+				"indoor_siren": "Indoor siren",
+				"motion_detector": "Motion detector",
+				"window_opening_detector": "Window opening detector",
+				"door_opening_detector": "Door opening detector",
+				"garage_door_opening_detector": "Garage door opening detector",
+				"glass_break_detector": "Glass break detector",
+				"smoke_detector": "Smoke detector",
+				"flood_detector": "Flood detector",
+				"gas_detector": "Gas detector",
+				"thermostat": "Thermostat",
+				"thermometer": "Thermometer",
+				"lock": "Lock",
+				"tamper": "Tamper",
+				"button": "Button",
+				"key_fob": "Key fob",
+				"electricity_meter_with_pulse_output": "Electricity meter with pulse output",
+				"radio_module": "Radio module",
+				"valve": "Valve",
+				"custom": "Custom",
+				"other": "Other",
+				"empty": "Empty"
+			}
+		},
+		"partially_arming_mode": {
+			"options": {
+				"not_supported": "Not supported",
+				"night_mode": "Night",
+				"home_mode": "Home"
+			}
+		}
+	},
+	"device": {
+		"keypad": {
+			"name": "Keypad (device {deviceNo})"
+		},
+		"keypad_with_door_opening_detector": {
+			"name": "Keypad with door opening detector (device {deviceNo})"
+		},
+		"outdoor_siren": {
+			"name": "Outdoor siren (device {deviceNo})"
+		},
+		"indoor_siren": {
+			"name": "Indoor siren (device {deviceNo})"
+		},
+		"motion_detector": {
+			"name": "Motion detector (device {deviceNo})"
+		},
+		"window_opening_detector": {
+			"name": "Window opening detector (device {deviceNo})"
+		},
+		"door_opening_detector": {
+			"name": "Door opening detector (device {deviceNo})"
+		},
+		"garage_door_opening_detector": {
+			"name": "Garage door opening detector (device {deviceNo})"
+		},
+		"glass_break_detector": {
+			"name": "Glass break detector (device {deviceNo})"
+		},
+		"smoke_detector": {
+			"name": "Smoke detector (device {deviceNo})"
+		},
+		"flood_detector": {
+			"name": "Flood detector (device {deviceNo})"
+		},
+		"gas_detector": {
+			"name": "Gas detector (device {deviceNo})"
+		},
+		"thermostat": {
+			"name": "Thermostat (device {deviceNo})"
+		},
+		"thermometer": {
+			"name": "Thermometer (device {deviceNo})"
+		},
+		"lock": {
+			"name": "Lock (device {deviceNo})"
+		},
+		"tamper": {
+			"name": "Tamper (device {deviceNo})"
+		},
+		"button": {
+			"name": "Button (device {deviceNo})"
+		},
+		"key_fob": {
+			"name": "Key fob (device {deviceNo})"
+		},
+		"electricity_meter_with_pulse_output": {
+			"name": "Electricity meter with pulse output (device {deviceNo})"
+		},
+		"radio_module": {
+			"name": "Radio module (device {deviceNo})"
+		},
+		"valve": {
+			"name": "Valve (device {deviceNo})"
+		},
+		"custom": {
+			"name": "Custom (device {deviceNo})"
+		},
+		"other": {
+			"name": "Other (device {deviceNo})"
+		},
+		"empty": {
+			"name": "Empty (device {deviceNo})"
+		},
+		"section": {
+			"name": "Section {sectionNo}"
+		}
+	},
+	"entity": {
+		"binary_sensor": {
+			"battery_problem": {
+				"name": "Battery problem"
+			},
+			"device_state_motion": {
+				"name": "Motion"
+			},
+			"device_state_window": {
+				"name": "Window"
+			},
+			"device_state_door": {
+				"name": "Door"
+			},
+			"device_state_garage_door": {
+				"name": "Garage door"
+			},
+			"device_state_glass": {
+				"name": "Glass"
+			},
+			"device_state_moisture": {
+				"name": "Moisture"
+			},
+			"device_state_gas": {
+				"name": "Gas"
+			},
+			"device_state_smoke": {
+				"name": "Smoke"
+			},
+			"device_state_lock": {
+				"name": "Lock"
+			},
+			"device_state_tamper": {
+				"name": "Tamper"
+			},
+			"device_state_thermostat": {
+				"name": "Thermostat"
+			},
+			"device_state_thermometer": {
+				"name": "Thermometer"
+			},
+			"device_state_indoor_siren_button": {
+				"name": "Button"
+			},
+			"device_state_button": {
+				"name": "Button"
+			},
+			"device_state_valve": {
+				"name": "Valve"
+			},
+			"device_state_custom": {
+				"name": "Custom"
+			},
+			"fire": {
+				"name": "Fire"
+			},
+			"gsm_signal": {
+				"name": "GSM signal"
+			},
+			"lan_connection": {
+				"name": "LAN connection"
+			},
+			"power_supple": {
+				"name": "Power supply"
+			},
+			"problem": {
+				"name": "Problem"
+			}
+		},
+		"event": {
+			"login": {
+				"name": "Login",
+				"state_attributes": {
+					"event_type": {
+						"state": {
+							"wrong_code": "Wrong code"
+						}
+					}
+				}
+			}
+		},
+		"sensor": {
+			"battery_level": {
+				"name": "Battery level"
+			},
+			"battery_standby_voltage": {
+				"name": "Battery standby voltage"
+			},
+			"battery_load_voltage": {
+				"name": "Battery load voltage"
+			},
+			"bus_1_devices_loss": {
+				"name": "BUS 1 devices loss"
+			},
+			"bus_2_devices_loss": {
+				"name": "BUS 2 devices loss"
+			},
+			"bus_3_devices_loss": {
+				"name": "BUS 3 devices loss"
+			},
+			"bus_1_voltage": {
+				"name": "BUS 1 voltage"
+			},
+			"bus_2_voltage": {
+				"name": "BUS 2 voltage"
+			},
+			"bus_3_voltage": {
+				"name": "BUS 3 voltage"
+			},
+			"gsm_signal_strength": {
+				"name": "GSM signal strength"
+			},
+			"lan_ip": {
+				"name": "LAN IP"
+			},
+			"pulses": {
+				"name": "Pulses"
+			},
+			"signal_strength": {
+				"name": "Signal strength"
+			},
+			"temperature": {
+				"name": "Temperature"
+			}
+		},
+		"switch": {
+			"pg_output": {
+				"name": "PG output {pgOutputNo}"
+			}
+		}
+	},
+	"services": {
+		"reset_problem": {
+			"name": "Reset problem",
+			"description": "Reset problem."
+		}
+	}
+}
