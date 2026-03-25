@@ -191,6 +191,13 @@ class Jablotron:
         return int(last_id) if isinstance(last_id, int) else None
 
     @staticmethod
+    def _usable_first_id(catalog: dict, key: str) -> int | None:
+        initial_setup = catalog.get("initial_setup") or {}
+        selected_range = initial_setup.get(key) or {}
+        first_id = selected_range.get("first_id")
+        return int(first_id) if isinstance(first_id, int) else None
+
+    @staticmethod
     def _legacy_section_id(section_no: int) -> str:
         return f"section_{section_no}"
 
@@ -319,7 +326,7 @@ class Jablotron:
 
     def _section_has_smoke_detector(self, section_no: int) -> bool:
         for device in self._catalog.get("devices", []):
-            if int(device.get("section_id") or 0) == section_no and device.get("inferred_device_type") == "smoke_detector":
+            if int(device.get("section_id") or 0) + 1 == section_no and device.get("inferred_device_type") == "smoke_detector":
                 return True
         return False
 
@@ -333,12 +340,15 @@ class Jablotron:
             added_any = self._ensure_control(EntityType.GSM_SIGNAL, "gsm_signal_sensor", hass_device=None) or added_any
             added_any = self._ensure_control(EntityType.GSM_SIGNAL_STRENGTH, "gsm_signal_strength_sensor", hass_device=None) or added_any
 
+        usable_section_first_id = self._usable_first_id(catalog, "sections")
         usable_section_last_id = self._usable_last_id(catalog, "sections")
         usable_pg_last_id = self._usable_last_id(catalog, "pgs")
         usable_device_last_id = self._usable_last_id(catalog, "devices")
 
         for section in catalog.get("sections", []):
-            section_no = int(section["id"])
+            section_no = int(section.get("display_id", section["id"])) + 1
+            if usable_section_first_id is not None and section_no < usable_section_first_id:
+                continue
             if usable_section_last_id is not None and section_no > usable_section_last_id:
                 continue
             section_hass_device = JablotronHassDevice(id=f"section_{section_no}", name=section.get("name") or f"Section {section_no}")
