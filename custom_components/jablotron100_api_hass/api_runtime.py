@@ -6,6 +6,7 @@ from typing import Any
 
 from homeassistant import core
 from homeassistant.components.alarm_control_panel import AlarmControlPanelState
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL, EVENT_HOMEASSISTANT_STOP, STATE_OFF, STATE_ON
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.dispatcher import async_dispatcher_send, dispatcher_send
@@ -134,7 +135,15 @@ class Jablotron:
         )
         self._apply_catalog_and_status(catalog, status)
         self.last_update_success = True
-        self._ws_task = self._hass.async_create_task(self._ws_loop())
+
+    def start_background_tasks(self, config_entry: ConfigEntry) -> None:
+        if self._ws_task is not None:
+            return
+        self._ws_task = config_entry.async_create_background_task(
+            self._hass,
+            self._ws_loop(),
+            "jablotron100_api_hass_ws",
+        )
 
     def shutdown(self) -> None:
         if self._ws_task is not None:

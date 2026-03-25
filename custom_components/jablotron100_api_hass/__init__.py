@@ -38,6 +38,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: JablotronConfigEn
 
 	config_entry.runtime_data = jablotron_instance
 	config_entry.async_on_unload(config_entry.add_update_listener(options_update_listener))
+	jablotron_instance.start_background_tasks(config_entry)
 
 	central_unit = jablotron_instance.central_unit()
 	device_registry = dr.async_get(hass)
