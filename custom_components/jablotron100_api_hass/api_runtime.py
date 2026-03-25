@@ -489,10 +489,14 @@ class Jablotron:
         return added_any
 
     def _send_signal_entities_added(self) -> None:
-        if self._hass.loop == asyncio.get_running_loop():
+        try:
+            in_event_loop = self._hass.loop == asyncio.get_running_loop()
+        except RuntimeError:
+            in_event_loop = False
+        if in_event_loop:
             async_dispatcher_send(self._hass, self.signal_entities_added())
         else:
-            dispatcher_send(self._hass, self.signal_entities_added())
+            self._hass.add_job(async_dispatcher_send, self._hass, self.signal_entities_added())
 
     def _update_entity_state(self, entity_id: str, state: StateType | AlarmControlPanelState | None) -> None:
         if state is None and entity_id not in self.entities_states:
@@ -502,11 +506,21 @@ class Jablotron:
             self.hass_entities[entity_id].update_state(state)
 
     def _trigger_wrong_code(self) -> None:
-        for control in self.entities[EntityType.EVENT_LOGIN].values():
-            entity = self.hass_entities.get(control.id)
-            if entity is not None and hasattr(entity, "trigger_event"):
-                entity.trigger_event(EventLoginType.WRONG_CODE)
-        self._hass.bus.async_fire(EVENT_WRONG_CODE)
+        def _fire() -> None:
+            for control in self.entities[EntityType.EVENT_LOGIN].values():
+                entity = self.hass_entities.get(control.id)
+                if entity is not None and hasattr(entity, "trigger_event"):
+                    entity.trigger_event(EventLoginType.WRONG_CODE)
+            self._hass.bus.async_fire(EVENT_WRONG_CODE)
+
+        try:
+            in_event_loop = self._hass.loop == asyncio.get_running_loop()
+        except RuntimeError:
+            in_event_loop = False
+        if in_event_loop:
+            _fire()
+        else:
+            self._hass.add_job(_fire)
 
     def modify_alarm_control_panel_section_state(self, section: int, state: AlarmControlPanelState, code: str | None) -> None:
         mode_map = {
@@ -535,7 +549,7 @@ class Jablotron:
             if added:
                 self._send_signal_entities_added()
 
-        self._hass.async_create_task(_run())
+        self._hass.add_job(_run)
 
     def toggle_pg_output(self, pg_output_number: int, state: str) -> None:
         async def _run() -> None:
@@ -548,7 +562,7 @@ class Jablotron:
             if added:
                 self._send_signal_entities_added()
 
-        self._hass.async_create_task(_run())
+        self._hass.add_job(_run)
 
 
 class JablotronEntity(Entity):
