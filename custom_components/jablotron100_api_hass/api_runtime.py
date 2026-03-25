@@ -16,6 +16,7 @@ from homeassistant.helpers.typing import StateType
 from .api_client import JablotronApiClient, JablotronApiError
 from .const import (
     CONF_API_TOKEN,
+    CONF_CONTROL_CODE,
     CONF_PARTIALLY_ARMING_MODE,
     CONF_REQUIRE_CODE_TO_ARM,
     CONF_REQUIRE_CODE_TO_DISARM,
@@ -120,6 +121,13 @@ class Jablotron:
 
     def last_authorized_user_or_device(self) -> str | None:
         return self._last_authorized_user_or_device
+
+    def default_control_code(self) -> str | None:
+        code = self._options.get(CONF_CONTROL_CODE)
+        if not isinstance(code, str):
+            return None
+        cleaned = code.strip()
+        return cleaned or None
 
     async def initialize(self) -> None:
         self._hass.bus.async_listen(EVENT_HOMEASSISTANT_STOP, lambda _: self.shutdown())
@@ -542,6 +550,7 @@ class Jablotron:
             self._hass.add_job(_fire)
 
     def modify_alarm_control_panel_section_state(self, section: int, state: AlarmControlPanelState, code: str | None) -> None:
+        code = code or self.default_control_code()
         mode_map = {
             AlarmControlPanelState.ARMED_AWAY: "away",
             AlarmControlPanelState.ARMED_HOME: "home",
@@ -570,10 +579,16 @@ class Jablotron:
 
         self._hass.add_job(_run)
 
-    def toggle_pg_output(self, pg_output_number: int, state: str) -> None:
+    def toggle_pg_output(self, pg_output_number: int, state: str, code: str | None = None) -> None:
+        code = code or self.default_control_code()
+
         async def _run() -> None:
             try:
-                payload = await self._api.post(f"/v1/pgs/{pg_output_number}/{'on' if state == STATE_ON else 'off'}")
+                params = {"code": code} if code else None
+                payload = await self._api.post(
+                    f"/v1/pgs/{pg_output_number}/{'on' if state == STATE_ON else 'off'}",
+                    params=params,
+                )
             except JablotronApiError as exc:
                 LOGGER.warning("PG control failed: %s", exc)
                 return

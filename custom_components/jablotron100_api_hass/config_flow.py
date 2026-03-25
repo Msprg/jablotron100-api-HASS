@@ -10,6 +10,7 @@ import voluptuous as vol
 from .api_client import JablotronApiClient, JablotronApiError
 from .const import (
     CONF_API_TOKEN,
+    CONF_CONTROL_CODE,
     CONF_REQUIRE_CODE_TO_ARM,
     CONF_REQUIRE_CODE_TO_DISARM,
     CONF_SERVER_URL,
@@ -97,6 +98,7 @@ class JablotronOptionsFlow(OptionsFlow):
         fields[vol.Required("partially_arming_mode", default=self._options.get("partially_arming_mode", PartiallyArmingMode.NIGHT_MODE.value))] = vol.In(
             [mode.value for mode in PartiallyArmingMode]
         )
+        fields[vol.Optional(CONF_CONTROL_CODE, default=self._options.get(CONF_CONTROL_CODE, ""))] = str
         fields[vol.Required(CONF_REQUIRE_CODE_TO_DISARM, default=self._options.get(CONF_REQUIRE_CODE_TO_DISARM, DEFAULT_CONF_REQUIRE_CODE_TO_DISARM))] = bool
         fields[vol.Required(CONF_REQUIRE_CODE_TO_ARM, default=self._options.get(CONF_REQUIRE_CODE_TO_ARM, DEFAULT_CONF_REQUIRE_CODE_TO_ARM))] = bool
 

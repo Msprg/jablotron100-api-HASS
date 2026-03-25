@@ -516,6 +516,7 @@
 				"title": "Options",
 				"data": {
 					"partially_arming_mode": "Partially arming",
+					"control_code": "Default control code",
 					"require_code_to_arm": "Require code to arm",
 					"require_code_to_disarm": "Require code to disarm"
 				}
