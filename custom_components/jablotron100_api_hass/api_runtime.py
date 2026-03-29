@@ -124,6 +124,7 @@ class Jablotron:
         self._perf_skipped_status_count = 0
         self._perf_skipped_catalog_count = 0
         self._last_status_profile: str | None = None
+        self._registry_remove_attempted_ids: set[str] = set()
 
     def _device_type_overrides(self) -> dict[int, str]:
         raw = self._options.get(CONF_DEVICE_TYPE_OVERRIDES, {})
@@ -546,15 +547,22 @@ class Jablotron:
             self.entities_states[entity_id] = state
 
     def _remove_control_by_id(self, control_id: str, *, entity_type: EntityType | None = None) -> None:
+        had_local = False
         if entity_type is None:
             for bucket in self.entities.values():
-                bucket.pop(control_id, None)
+                if bucket.pop(control_id, None) is not None:
+                    had_local = True
         else:
-            self.entities[entity_type].pop(control_id, None)
-        self.entities_states.pop(control_id, None)
-        self.hass_entities.pop(control_id, None)
+            if self.entities[entity_type].pop(control_id, None) is not None:
+                had_local = True
+        if self.entities_states.pop(control_id, None) is not None:
+            had_local = True
+        if self.hass_entities.pop(control_id, None) is not None:
+            had_local = True
 
         if self._central_unit is None or not hasattr(self._hass, "data"):
+            return
+        if not had_local and control_id in self._registry_remove_attempted_ids:
             return
 
         target_unique_id = f"{DOMAIN}.{self._central_unit.unique_id}.{control_id}"
@@ -562,6 +570,10 @@ class Jablotron:
         for entity_id, entry in list(registry.entities.items()):
             if entry.unique_id == target_unique_id:
                 registry.async_remove(entity_id)
+                self._registry_remove_attempted_ids.add(control_id)
+                break
+        else:
+            self._registry_remove_attempted_ids.add(control_id)
 
     def _remove_unsupported_central_entities(self, status: dict) -> None:
         central = status.get("central") or {}
@@ -578,18 +590,34 @@ class Jablotron:
                 return True
         return False
 
+    def _reconcile_catalog_device_dynamic_entities(self, device_no: int, inferred_device_type: str | None) -> None:
+        if inferred_device_type not in TEMPERATURE_DEVICE_TYPES:
+            self._remove_control_by_id(self._legacy_device_temperature_id(device_no), entity_type=EntityType.TEMPERATURE)
+        if inferred_device_type != "electricity_meter_with_pulse_output":
+            self._remove_control_by_id(self._legacy_pulse_id(device_no), entity_type=EntityType.PULSES)
+            self._remove_control_by_id(self._legacy_pulse_id(device_no, 1), entity_type=EntityType.PULSES)
+        if inferred_device_type not in SIREN_DEVICE_TYPES:
+            self._remove_control_by_id(self._legacy_device_battery_standby_voltage_id(device_no), entity_type=EntityType.BATTERY_STANDBY_VOLTAGE)
+            self._remove_control_by_id(self._legacy_device_battery_load_voltage_id(device_no), entity_type=EntityType.BATTERY_LOAD_VOLTAGE)
+
+    def _reconcile_catalog_devices(self, stale_device_ids: set[int]) -> None:
+        for stale_device_id in stale_device_ids:
+            self._remove_device_controls(stale_device_id)
+
     def _apply_catalog(self, catalog: dict) -> bool:
         catalog = self._apply_device_type_overrides(catalog)
         if self._last_catalog_payload == catalog:
             self._perf_skipped_catalog_count += 1
             return False
         self._last_catalog_payload = catalog
+        previous_device_ids = set(self._catalog_devices_by_id)
         self._catalog = catalog
         self._catalog_devices_by_id = {
             int(device["id"]): device
             for device in catalog.get("devices", [])
             if device.get("id") is not None
         }
+        visible_device_ids: set[int] = set()
         self._code_prefix_enabled = bool((catalog.get("initial_setup") or {}).get("code_prefix"))
         added_any = self._ensure_login_event()
         if self._panel_has_lan_gsm():
@@ -626,6 +654,7 @@ class Jablotron:
             device_no = int(device["id"])
             if usable_device_last_id is not None and device_no > usable_device_last_id:
                 continue
+            visible_device_ids.add(device_no)
             if device.get("inferred_device_type") in IGNORED_DEVICE_TYPES:
                 self._remove_device_controls(device_no)
                 continue
@@ -648,14 +677,10 @@ class Jablotron:
                 self._remove_control_by_id(self._legacy_device_state_id(device_no))
 
             inferred_device_type = device.get("inferred_device_type")
-            if inferred_device_type in TEMPERATURE_DEVICE_TYPES:
-                added_any = self._ensure_control(EntityType.TEMPERATURE, self._legacy_device_temperature_id(device_no), hass_device=hass_device) or added_any
-            if inferred_device_type == "electricity_meter_with_pulse_output":
-                added_any = self._ensure_control(EntityType.PULSES, self._legacy_pulse_id(device_no), hass_device=hass_device) or added_any
-            if inferred_device_type in SIREN_DEVICE_TYPES:
-                added_any = self._ensure_control(EntityType.BATTERY_STANDBY_VOLTAGE, self._legacy_device_battery_standby_voltage_id(device_no), hass_device=hass_device) or added_any
-                added_any = self._ensure_control(EntityType.BATTERY_LOAD_VOLTAGE, self._legacy_device_battery_load_voltage_id(device_no), hass_device=hass_device) or added_any
+            self._reconcile_catalog_device_dynamic_entities(device_no, inferred_device_type)
 
+        stale_device_ids = (previous_device_ids | set(self._catalog_devices_by_id)) - visible_device_ids
+        self._reconcile_catalog_devices(stale_device_ids)
         self._schedule_flush_dirty_hass_entities()
         return added_any
 
@@ -678,7 +703,6 @@ class Jablotron:
         device_no = int(device["id"])
         catalog_device = self._find_catalog_device(device_no)
         if catalog_device.get("inferred_device_type") in IGNORED_DEVICE_TYPES:
-            self._remove_device_controls(device_no)
             return False
         hass_device = JablotronHassDevice(
             id=self._legacy_device_id(device_no),
@@ -688,25 +712,19 @@ class Jablotron:
         added_any = False
         if device.get("signal_strength") is not None or device.get("wireless"):
             added_any = self._ensure_control(EntityType.SIGNAL_STRENGTH, self._legacy_device_signal_strength_id(device_no), hass_device=hass_device) or added_any
-        else:
-            self._remove_control_by_id(self._legacy_device_signal_strength_id(device_no), entity_type=EntityType.SIGNAL_STRENGTH)
         if device.get("battery_level") is not None or device.get("battery_problem") is not None:
             added_any = self._ensure_control(EntityType.BATTERY_LEVEL, self._legacy_device_battery_level_id(device_no), hass_device=hass_device) or added_any
             added_any = self._ensure_control(EntityType.BATTERY_PROBLEM, self._legacy_device_battery_problem_id(device_no), hass_device=hass_device) or added_any
-        else:
-            self._remove_control_by_id(self._legacy_device_battery_level_id(device_no), entity_type=EntityType.BATTERY_LEVEL)
-            self._remove_control_by_id(self._legacy_device_battery_problem_id(device_no), entity_type=EntityType.BATTERY_PROBLEM)
         inferred_device_type = catalog_device.get("inferred_device_type")
-        if inferred_device_type in SIREN_DEVICE_TYPES:
-            added_any = self._ensure_control(EntityType.BATTERY_STANDBY_VOLTAGE, self._legacy_device_battery_standby_voltage_id(device_no), hass_device=hass_device) or added_any
-            added_any = self._ensure_control(EntityType.BATTERY_LOAD_VOLTAGE, self._legacy_device_battery_load_voltage_id(device_no), hass_device=hass_device) or added_any
-        else:
-            self._remove_control_by_id(self._legacy_device_battery_standby_voltage_id(device_no), entity_type=EntityType.BATTERY_STANDBY_VOLTAGE)
-            self._remove_control_by_id(self._legacy_device_battery_load_voltage_id(device_no), entity_type=EntityType.BATTERY_LOAD_VOLTAGE)
+        if inferred_device_type in SIREN_DEVICE_TYPES and (
+            device.get("battery_standby_voltage") is not None or device.get("battery_load_voltage") is not None
+        ):
+            if device.get("battery_standby_voltage") is not None:
+                added_any = self._ensure_control(EntityType.BATTERY_STANDBY_VOLTAGE, self._legacy_device_battery_standby_voltage_id(device_no), hass_device=hass_device) or added_any
+            if device.get("battery_load_voltage") is not None:
+                added_any = self._ensure_control(EntityType.BATTERY_LOAD_VOLTAGE, self._legacy_device_battery_load_voltage_id(device_no), hass_device=hass_device) or added_any
         if device.get("temperature") is not None and inferred_device_type in TEMPERATURE_DEVICE_TYPES:
             added_any = self._ensure_control(EntityType.TEMPERATURE, self._legacy_device_temperature_id(device_no), hass_device=hass_device) or added_any
-        else:
-            self._remove_control_by_id(self._legacy_device_temperature_id(device_no), entity_type=EntityType.TEMPERATURE)
         for pulse_no, _pulse in enumerate(device.get("pulses") or []):
             added_any = self._ensure_control(EntityType.PULSES, self._legacy_pulse_id(device_no, pulse_no), hass_device=hass_device) or added_any
         return added_any
