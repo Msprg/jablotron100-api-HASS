@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import time
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -44,6 +45,8 @@ LEGACY_LAN_GSM_MODELS = {"JA-101K", "JA-101K-LAN", "JA-106K-3G", "JA-14K", "JA-1
 TEMPERATURE_DEVICE_TYPES = {"thermometer", "thermostat", "smoke_detector"}
 SIREN_DEVICE_TYPES = {"outdoor_siren", "indoor_siren"}
 IGNORED_DEVICE_TYPES = {DeviceType.OTHER.value, DeviceType.EMPTY.value}
+PERF_SLOW_THRESHOLD_SECONDS = 0.05
+PERF_SUMMARY_INTERVAL_SECONDS = 30.0
 
 
 @dataclass
@@ -108,6 +111,14 @@ class Jablotron:
         self._ws_task: asyncio.Task | None = None
         self._dirty_entity_ids: set[str] = set()
         self._flush_scheduled = False
+        self._perf_last_summary = time.perf_counter()
+        self._perf_message_count = 0
+        self._perf_status_count = 0
+        self._perf_catalog_count = 0
+        self._perf_slow_message_count = 0
+        self._perf_flush_count = 0
+        self._perf_slow_flush_count = 0
+        self._perf_flushed_entity_count = 0
 
     def _device_type_overrides(self) -> dict[int, str]:
         raw = self._options.get(CONF_DEVICE_TYPE_OVERRIDES, {})
@@ -232,12 +243,26 @@ class Jablotron:
     def _flush_dirty_hass_entities(self) -> None:
         if not self._dirty_entity_ids:
             return
+        started = time.perf_counter()
         dirty_ids = tuple(self._dirty_entity_ids)
         self._dirty_entity_ids.clear()
         for entity_id in dirty_ids:
             hass_entity = self.hass_entities.get(entity_id)
             if hass_entity is not None:
                 hass_entity.refresh_state()
+        self._perf_flush_count += 1
+        self._perf_flushed_entity_count += len(dirty_ids)
+        duration = time.perf_counter() - started
+        if duration >= PERF_SLOW_THRESHOLD_SECONDS:
+            self._perf_slow_flush_count += 1
+            LOGGER.debug(
+                "HA WS profiling: flushed %s dirty entities in %.3fs (entities=%s, states=%s)",
+                len(dirty_ids),
+                duration,
+                len(self.hass_entities),
+                len(self.entities_states),
+            )
+        self._maybe_log_perf_summary()
 
     def _schedule_flush_dirty_hass_entities(self) -> None:
         if self._flush_scheduled or not self._dirty_entity_ids:
@@ -257,6 +282,48 @@ class Jablotron:
             self._hass.loop.call_soon(_flush)
         else:
             self._hass.loop.call_soon_threadsafe(_flush)
+
+    def _maybe_log_perf_summary(self) -> None:
+        if not LOGGER.isEnabledFor(10):
+            return
+        now = time.perf_counter()
+        if now - self._perf_last_summary < PERF_SUMMARY_INTERVAL_SECONDS:
+            return
+        LOGGER.debug(
+            "HA WS profiling summary: messages=%s status=%s catalog=%s slow_messages=%s flushes=%s slow_flushes=%s flushed_entities=%s current_entities=%s current_states=%s",
+            self._perf_message_count,
+            self._perf_status_count,
+            self._perf_catalog_count,
+            self._perf_slow_message_count,
+            self._perf_flush_count,
+            self._perf_slow_flush_count,
+            self._perf_flushed_entity_count,
+            len(self.hass_entities),
+            len(self.entities_states),
+        )
+        self._perf_last_summary = now
+
+    def _log_slow_ws_message(self, topic: str, duration: float, payload: dict[str, Any]) -> None:
+        self._perf_slow_message_count += 1
+        details: list[str] = []
+        if topic == "status":
+            status = payload.get("payload", {})
+            details.append(f"sections={len(status.get('sections', []))}")
+            details.append(f"pgs={len(status.get('pgs', []))}")
+            details.append(f"devices={len(status.get('devices', []))}")
+            details.append(f"dirty={len(self._dirty_entity_ids)}")
+        elif topic in {"catalog", "system"}:
+            catalog = payload.get("payload", {})
+            details.append(f"sections={len(catalog.get('sections', []))}")
+            details.append(f"pgs={len(catalog.get('pgs', []))}")
+            details.append(f"devices={len(catalog.get('devices', []))}")
+            details.append(f"users={len(catalog.get('users', []))}")
+        LOGGER.debug(
+            "HA WS profiling: processed topic=%s in %.3fs (%s)",
+            topic,
+            duration,
+            ", ".join(details) or "no details",
+        )
 
     def _set_connection_health(self, success: bool) -> None:
         if self.last_update_success == success:
@@ -278,20 +345,28 @@ class Jablotron:
                 await ws.receive_json()
                 await ws.send_json({"action": "subscribe", "topics": ["status", "catalog", "users"]})
                 async for msg in ws:
+                    started = time.perf_counter()
                     if msg.type.name != "TEXT":
                         continue
                     payload = msg.json(loads=json.loads)
                     topic = payload.get("topic")
+                    self._perf_message_count += 1
                     if topic == "status":
+                        self._perf_status_count += 1
                         added = self._apply_status(payload.get("payload", {}))
                         if added:
                             self._send_signal_entities_added()
                     elif topic in {"catalog", "system"}:
+                        self._perf_catalog_count += 1
                         data = payload.get("payload", {})
                         if "sections" in data or "users" in data or "devices" in data:
                             added = self._apply_catalog(data)
                             if added:
                                 self._send_signal_entities_added()
+                    duration = time.perf_counter() - started
+                    if duration >= PERF_SLOW_THRESHOLD_SECONDS:
+                        self._log_slow_ws_message(str(topic), duration, payload)
+                    self._maybe_log_perf_summary()
                 raise ConnectionError("API websocket closed")
             except asyncio.CancelledError:
                 if ws is not None:
