@@ -97,6 +97,7 @@ class Jablotron:
         )
         self._central_unit: JablotronCentralUnit | None = None
         self._catalog: dict[str, Any] = {}
+        self._catalog_devices_by_id: dict[int, dict[str, Any]] = {}
         self._last_authorized_user_or_device: str | None = None
         self._code_prefix_enabled = False
         self.entities: dict[EntityType, dict[str, JablotronControl]] = {entity_type: {} for entity_type in EntityType.__members__.values()}
@@ -106,6 +107,7 @@ class Jablotron:
         self.in_service_mode = False
         self._ws_task: asyncio.Task | None = None
         self._dirty_entity_ids: set[str] = set()
+        self._flush_scheduled = False
 
     def _device_type_overrides(self) -> dict[int, str]:
         raw = self._options.get(CONF_DEVICE_TYPE_OVERRIDES, {})
@@ -236,6 +238,25 @@ class Jablotron:
             hass_entity = self.hass_entities.get(entity_id)
             if hass_entity is not None:
                 hass_entity.refresh_state()
+
+    def _schedule_flush_dirty_hass_entities(self) -> None:
+        if self._flush_scheduled or not self._dirty_entity_ids:
+            return
+
+        def _flush() -> None:
+            self._flush_scheduled = False
+            self._flush_dirty_hass_entities()
+
+        self._flush_scheduled = True
+        try:
+            running_loop = asyncio.get_running_loop()
+        except RuntimeError:
+            running_loop = None
+
+        if running_loop is self._hass.loop:
+            self._hass.loop.call_soon(_flush)
+        else:
+            self._hass.loop.call_soon_threadsafe(_flush)
 
     def _set_connection_health(self, success: bool) -> None:
         if self.last_update_success == success:
@@ -476,6 +497,11 @@ class Jablotron:
     def _apply_catalog(self, catalog: dict) -> bool:
         catalog = self._apply_device_type_overrides(catalog)
         self._catalog = catalog
+        self._catalog_devices_by_id = {
+            int(device["id"]): device
+            for device in catalog.get("devices", [])
+            if device.get("id") is not None
+        }
         self._code_prefix_enabled = bool((catalog.get("initial_setup") or {}).get("code_prefix"))
         added_any = self._ensure_login_event()
         if self._panel_has_lan_gsm():
@@ -542,7 +568,7 @@ class Jablotron:
                 added_any = self._ensure_control(EntityType.BATTERY_STANDBY_VOLTAGE, self._legacy_device_battery_standby_voltage_id(device_no), hass_device=hass_device) or added_any
                 added_any = self._ensure_control(EntityType.BATTERY_LOAD_VOLTAGE, self._legacy_device_battery_load_voltage_id(device_no), hass_device=hass_device) or added_any
 
-        self._flush_dirty_hass_entities()
+        self._schedule_flush_dirty_hass_entities()
         return added_any
 
     def _remove_device_controls(self, device_no: int) -> None:
@@ -558,10 +584,7 @@ class Jablotron:
         self._remove_control_by_id(self._legacy_pulse_id(device_no, 1), entity_type=EntityType.PULSES)
 
     def _find_catalog_device(self, device_no: int) -> dict[str, Any]:
-        for device in self._catalog.get("devices", []):
-            if int(device["id"]) == device_no:
-                return device
-        return {}
+        return self._catalog_devices_by_id.get(device_no, {})
 
     def _ensure_device_dynamic_entities(self, device: dict) -> bool:
         device_no = int(device["id"])
@@ -678,7 +701,7 @@ class Jablotron:
             for pulse_no, pulse_value in enumerate(device.get("pulses") or []):
                 self._update_entity_state(self._legacy_pulse_id(device_no, pulse_no), pulse_value)
 
-        self._flush_dirty_hass_entities()
+        self._schedule_flush_dirty_hass_entities()
         return added_any
 
     def _send_signal_entities_added(self) -> None:
