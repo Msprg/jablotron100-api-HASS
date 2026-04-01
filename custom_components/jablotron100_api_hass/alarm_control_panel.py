@@ -10,7 +10,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import StateType
 from . import JablotronConfigEntry
-from .const import EntityType, PartiallyArmingMode
+from .const import EntityType, LOGGER, PartiallyArmingMode
 from .api_runtime import Jablotron, JablotronEntity, JablotronAlarmControlPanel
 
 
@@ -55,12 +55,6 @@ class JablotronAlarmControlPanelEntity(JablotronEntity, AlarmControlPanelEntity)
 		self._partially_arming_mode = self._jablotron.partially_arming_mode()
 		self._code_required_for_disarm = self._jablotron.is_code_required_for_disarm()
 
-		self._attr_code_arm_required = self._jablotron.is_code_required_for_arm()
-		self._attr_supported_features = self._detect_supported_features()
-		self._attr_alarm_state = self._get_state()
-		self._attr_changed_by = self._changed_by
-		self._attr_code_format = self._detect_code_format()
-
 	def alarm_disarm(self, code: str | None = None) -> None:
 		if self._get_state() == AlarmControlPanelState.DISARMED:
 			return
@@ -80,7 +74,7 @@ class JablotronAlarmControlPanelEntity(JablotronEntity, AlarmControlPanelEntity)
 		code = JablotronAlarmControlPanelEntity._clean_code(code)
 		code = self.code_or_default_code(code)
 
-		if code is None and self._attr_code_arm_required:
+		if code is None and self.code_arm_required:
 			return
 
 		self._jablotron.modify_alarm_control_panel_section_state(self._control.section, AlarmControlPanelState.ARMED_AWAY, code)
@@ -104,10 +98,31 @@ class JablotronAlarmControlPanelEntity(JablotronEntity, AlarmControlPanelEntity)
 		code = JablotronAlarmControlPanelEntity._clean_code(code)
 		code = self.code_or_default_code(code)
 
-		if code is None and self._attr_code_arm_required:
+		if code is None and self.code_arm_required:
 			return
 
 		self._jablotron.modify_alarm_control_panel_section_state(self._control.section, state, code)
+
+	@property
+	def alarm_state(self) -> AlarmControlPanelState | None:
+		state = self._get_state()
+		return state if isinstance(state, AlarmControlPanelState) else None
+
+	@property
+	def changed_by(self) -> str | None:
+		return self._changed_by
+
+	@property
+	def code_arm_required(self) -> bool:
+		return self._jablotron.is_code_required_for_arm()
+
+	@property
+	def code_format(self) -> CodeFormat | None:
+		return self._detect_code_format()
+
+	@property
+	def supported_features(self) -> AlarmControlPanelEntityFeature:
+		return self._detect_supported_features()
 
 	def _detect_supported_features(self) -> AlarmControlPanelEntityFeature:
 		if self._partially_arming_mode == PartiallyArmingMode.NOT_SUPPORTED:
@@ -120,7 +135,7 @@ class JablotronAlarmControlPanelEntity(JablotronEntity, AlarmControlPanelEntity)
 
 	def _detect_code_format(self) -> CodeFormat | None:
 		if self._get_state() == AlarmControlPanelState.DISARMED:
-			code_required = self._attr_code_arm_required
+			code_required = self.code_arm_required
 		else:
 			code_required = self._code_required_for_disarm
 
@@ -131,4 +146,22 @@ class JablotronAlarmControlPanelEntity(JablotronEntity, AlarmControlPanelEntity)
 
 	@staticmethod
 	def _clean_code(code: str | None) -> str | None:
-		return None if code == "" else code
+		if code is None:
+			return None
+
+		cleaned = code.strip()
+		if cleaned == "":
+			return None
+
+		for placeholder in ("undefined", "null"):
+			lower_cleaned = cleaned.lower()
+			if lower_cleaned == placeholder:
+				LOGGER.warning("Received malformed alarm code placeholder from the frontend; treating it as empty input.")
+				return None
+			if lower_cleaned.startswith(placeholder):
+				remainder = cleaned[len(placeholder):].strip()
+				if remainder != "" and all(character in "0123456789*" for character in remainder):
+					LOGGER.warning("Received malformed alarm code placeholder prefix from the frontend; stripping it before sending the code.")
+					return remainder
+
+		return cleaned
