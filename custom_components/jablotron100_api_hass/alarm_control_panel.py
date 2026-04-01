@@ -12,6 +12,7 @@ from homeassistant.helpers.typing import StateType
 from . import JablotronConfigEntry
 from .const import EntityType, LOGGER, PartiallyArmingMode
 from .api_runtime import Jablotron, JablotronEntity, JablotronAlarmControlPanel
+from .errors import ControlDenied
 
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: JablotronConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
@@ -67,6 +68,18 @@ class JablotronAlarmControlPanelEntity(JablotronEntity, AlarmControlPanelEntity)
 
 		self._jablotron.modify_alarm_control_panel_section_state(self._control.section, AlarmControlPanelState.DISARMED, code)
 
+	async def async_alarm_disarm(self, code: str | None = None) -> None:
+		if self._get_state() == AlarmControlPanelState.DISARMED:
+			return
+
+		code = JablotronAlarmControlPanelEntity._clean_code(code)
+		code = self.code_or_default_code(code)
+
+		if code is None and self._code_required_for_disarm:
+			raise ControlDenied("Disarming requires a code.")
+
+		await self._jablotron.async_modify_alarm_control_panel_section_state(self._control.section, AlarmControlPanelState.DISARMED, code)
+
 	def alarm_arm_away(self, code: str | None = None) -> None:
 		if self._get_state() == AlarmControlPanelState.ARMED_AWAY:
 			return
@@ -79,11 +92,29 @@ class JablotronAlarmControlPanelEntity(JablotronEntity, AlarmControlPanelEntity)
 
 		self._jablotron.modify_alarm_control_panel_section_state(self._control.section, AlarmControlPanelState.ARMED_AWAY, code)
 
+	async def async_alarm_arm_away(self, code: str | None = None) -> None:
+		if self._get_state() == AlarmControlPanelState.ARMED_AWAY:
+			return
+
+		code = JablotronAlarmControlPanelEntity._clean_code(code)
+		code = self.code_or_default_code(code)
+
+		if code is None and self.code_arm_required:
+			raise ControlDenied("Arming requires a code.")
+
+		await self._jablotron.async_modify_alarm_control_panel_section_state(self._control.section, AlarmControlPanelState.ARMED_AWAY, code)
+
 	def alarm_arm_home(self, code: str | None = None) -> None:
 		self._arm_partially(AlarmControlPanelState.ARMED_HOME, code)
 
 	def alarm_arm_night(self, code: str | None = None) -> None:
 		self._arm_partially(AlarmControlPanelState.ARMED_NIGHT, code)
+
+	async def async_alarm_arm_home(self, code: str | None = None) -> None:
+		await self._async_arm_partially(AlarmControlPanelState.ARMED_HOME, code)
+
+	async def async_alarm_arm_night(self, code: str | None = None) -> None:
+		await self._async_arm_partially(AlarmControlPanelState.ARMED_NIGHT, code)
 
 	def update_state(self, state: StateType) -> None:
 		if self._get_state() != state:
@@ -102,6 +133,18 @@ class JablotronAlarmControlPanelEntity(JablotronEntity, AlarmControlPanelEntity)
 			return
 
 		self._jablotron.modify_alarm_control_panel_section_state(self._control.section, state, code)
+
+	async def _async_arm_partially(self, state: AlarmControlPanelState, code: str | None = None) -> None:
+		if self._get_state() in (AlarmControlPanelState.ARMED_AWAY, AlarmControlPanelState.ARMED_HOME, AlarmControlPanelState.ARMED_NIGHT):
+			return
+
+		code = JablotronAlarmControlPanelEntity._clean_code(code)
+		code = self.code_or_default_code(code)
+
+		if code is None and self.code_arm_required:
+			raise ControlDenied("Arming requires a code.")
+
+		await self._jablotron.async_modify_alarm_control_panel_section_state(self._control.section, state, code)
 
 	@property
 	def alarm_state(self) -> AlarmControlPanelState | None:
