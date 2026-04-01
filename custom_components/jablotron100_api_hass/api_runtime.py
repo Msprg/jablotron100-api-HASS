@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import asyncio
 import json
-import time
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -45,8 +44,6 @@ LEGACY_LAN_GSM_MODELS = {"JA-101K", "JA-101K-LAN", "JA-106K-3G", "JA-14K", "JA-1
 TEMPERATURE_DEVICE_TYPES = {"thermometer", "thermostat", "smoke_detector"}
 SIREN_DEVICE_TYPES = {"outdoor_siren", "indoor_siren"}
 IGNORED_DEVICE_TYPES = {DeviceType.OTHER.value, DeviceType.EMPTY.value}
-PERF_SLOW_THRESHOLD_SECONDS = 0.05
-PERF_SUMMARY_INTERVAL_SECONDS = 30.0
 
 
 @dataclass
@@ -110,15 +107,6 @@ class Jablotron:
         self.in_service_mode = False
         self._ws_task: asyncio.Task | None = None
         self._dirty_entity_ids: set[str] = set()
-        self._perf_last_summary = time.perf_counter()
-        self._perf_message_count = 0
-        self._perf_status_count = 0
-        self._perf_catalog_count = 0
-        self._perf_slow_message_count = 0
-        self._perf_flush_count = 0
-        self._perf_slow_flush_count = 0
-        self._perf_flushed_entity_count = 0
-        self._last_status_profile: str | None = None
         self._registry_remove_attempted_ids: set[str] = set()
 
     def _device_type_overrides(self) -> dict[int, str]:
@@ -244,70 +232,12 @@ class Jablotron:
     def _flush_dirty_hass_entities(self) -> None:
         if not self._dirty_entity_ids:
             return
-        started = time.perf_counter()
         dirty_ids = tuple(self._dirty_entity_ids)
         self._dirty_entity_ids.clear()
         for entity_id in dirty_ids:
             hass_entity = self.hass_entities.get(entity_id)
             if hass_entity is not None:
                 hass_entity.refresh_state()
-        self._perf_flush_count += 1
-        self._perf_flushed_entity_count += len(dirty_ids)
-        duration = time.perf_counter() - started
-        if duration >= PERF_SLOW_THRESHOLD_SECONDS:
-            self._perf_slow_flush_count += 1
-            LOGGER.debug(
-                "HA WS profiling: flushed %s dirty entities in %.3fs (entities=%s, states=%s)",
-                len(dirty_ids),
-                duration,
-                len(self.hass_entities),
-                len(self.entities_states),
-            )
-        self._maybe_log_perf_summary()
-
-    def _maybe_log_perf_summary(self) -> None:
-        if not LOGGER.isEnabledFor(10):
-            return
-        now = time.perf_counter()
-        if now - self._perf_last_summary < PERF_SUMMARY_INTERVAL_SECONDS:
-            return
-        LOGGER.debug(
-            "HA WS profiling summary: messages=%s status=%s catalog=%s slow_messages=%s flushes=%s slow_flushes=%s flushed_entities=%s current_entities=%s current_states=%s",
-            self._perf_message_count,
-            self._perf_status_count,
-            self._perf_catalog_count,
-            self._perf_slow_message_count,
-            self._perf_flush_count,
-            self._perf_slow_flush_count,
-            self._perf_flushed_entity_count,
-            len(self.hass_entities),
-            len(self.entities_states),
-        )
-        self._perf_last_summary = now
-
-    def _log_slow_ws_message(self, topic: str, duration: float, payload: dict[str, Any]) -> None:
-        self._perf_slow_message_count += 1
-        details: list[str] = []
-        if topic == "status":
-            status = payload.get("payload", {})
-            details.append(f"sections={len(status.get('sections', []))}")
-            details.append(f"pgs={len(status.get('pgs', []))}")
-            details.append(f"devices={len(status.get('devices', []))}")
-            details.append(f"dirty={len(self._dirty_entity_ids)}")
-            if self._last_status_profile:
-                details.append(self._last_status_profile)
-        elif topic in {"catalog", "system"}:
-            catalog = payload.get("payload", {})
-            details.append(f"sections={len(catalog.get('sections', []))}")
-            details.append(f"pgs={len(catalog.get('pgs', []))}")
-            details.append(f"devices={len(catalog.get('devices', []))}")
-            details.append(f"users={len(catalog.get('users', []))}")
-        LOGGER.debug(
-            "HA WS profiling: processed topic=%s in %.3fs (%s)",
-            topic,
-            duration,
-            ", ".join(details) or "no details",
-        )
 
     def _set_connection_health(self, success: bool) -> None:
         if self.last_update_success == success:
@@ -329,28 +259,20 @@ class Jablotron:
                 await ws.receive_json()
                 await ws.send_json({"action": "subscribe", "topics": ["status", "catalog", "users"]})
                 async for msg in ws:
-                    started = time.perf_counter()
                     if msg.type.name != "TEXT":
                         continue
                     payload = msg.json(loads=json.loads)
                     topic = payload.get("topic")
-                    self._perf_message_count += 1
                     if topic == "status":
-                        self._perf_status_count += 1
                         added = self._apply_status(payload.get("payload", {}))
                         if added:
                             self._send_signal_entities_added()
                     elif topic in {"catalog", "system"}:
-                        self._perf_catalog_count += 1
                         data = payload.get("payload", {})
                         if "sections" in data or "users" in data or "devices" in data:
                             added = self._apply_catalog(data)
                             if added:
                                 self._send_signal_entities_added()
-                    duration = time.perf_counter() - started
-                    if duration >= PERF_SLOW_THRESHOLD_SECONDS:
-                        self._log_slow_ws_message(str(topic), duration, payload)
-                    self._maybe_log_perf_summary()
                 raise ConnectionError("API websocket closed")
             except asyncio.CancelledError:
                 if ws is not None:
@@ -722,16 +644,12 @@ class Jablotron:
         return added_any
 
     def _apply_status(self, status: dict) -> bool:
-        started = time.perf_counter()
         self._set_service_mode(bool(status.get("service_mode", False)))
         self._set_connection_health(True)
-        t0 = time.perf_counter()
         added_any = self._ensure_central_dynamic_entities(status)
-        ensure_central_duration = time.perf_counter() - t0
 
         central = status.get("central") or {}
         self._last_authorized_user_or_device = central.get("last_authorized_user_or_device") or self._last_authorized_user_or_device
-        t0 = time.perf_counter()
         self._update_entity_state(self._legacy_power_supply_id(), STATE_ON if central.get("power_supply") else STATE_OFF if central.get("power_supply") is not None else None)
         self._update_entity_state(self._legacy_device_battery_level_id(0), central.get("battery_level"))
         self._update_entity_state(self._legacy_device_battery_problem_id(0), STATE_ON if central.get("battery_problem") else STATE_OFF if central.get("battery_problem") is not None else None)
@@ -745,9 +663,7 @@ class Jablotron:
             bus_no = int(bus["bus_number"])
             self._update_entity_state(self._legacy_bus_voltage_id(bus_no), bus.get("voltage"))
             self._update_entity_state(self._legacy_bus_devices_loss_id(bus_no), bus.get("devices_loss_count"))
-        central_updates_duration = time.perf_counter() - t0
 
-        t0 = time.perf_counter()
         for section in status.get("sections", []):
             section_no = int(section["id"])
             mapped = {
@@ -764,23 +680,14 @@ class Jablotron:
             if section.get("fire") and self._ensure_control(EntityType.FIRE, self._legacy_section_fire_id(section_no), hass_device=self.entities[EntityType.ALARM_CONTROL_PANEL][self._legacy_section_id(section_no)].hass_device):
                 added_any = True
             self._update_entity_state(self._legacy_section_fire_id(section_no), STATE_ON if section.get("fire") else STATE_OFF if self._legacy_section_fire_id(section_no) in self.entities_states else None)
-        sections_duration = time.perf_counter() - t0
 
-        t0 = time.perf_counter()
         for pg in status.get("pgs", []):
             pg_no = int(pg["id"])
             self._update_entity_state(self._legacy_pg_id(pg_no), STATE_ON if pg.get("state") == "on" else STATE_OFF if pg.get("state") == "off" else None)
-        pgs_duration = time.perf_counter() - t0
 
-        t0 = time.perf_counter()
-        device_dynamic_duration = 0.0
-        device_state_duration = 0.0
         for device in status.get("devices", []):
-            device_started = time.perf_counter()
             added_any = self._ensure_device_dynamic_entities(device) or added_any
-            device_dynamic_duration += time.perf_counter() - device_started
             device_no = int(device["id"])
-            device_started = time.perf_counter()
             self._update_entity_state(self._legacy_device_state_id(device_no), STATE_ON if device.get("state") == "on" else STATE_OFF if device.get("state") == "off" else None)
             self._update_entity_state(self._legacy_device_problem_id(device_no), STATE_ON if device.get("problem") else STATE_OFF if device.get("problem") is not None else None)
             self._update_entity_state(self._legacy_device_signal_strength_id(device_no), device.get("signal_strength"))
@@ -791,24 +698,8 @@ class Jablotron:
             self._update_entity_state(self._legacy_device_battery_load_voltage_id(device_no), device.get("battery_load_voltage"))
             for pulse_no, pulse_value in enumerate(device.get("pulses") or []):
                 self._update_entity_state(self._legacy_pulse_id(device_no, pulse_no), pulse_value)
-            device_state_duration += time.perf_counter() - device_started
-        devices_duration = time.perf_counter() - t0
 
-        t0 = time.perf_counter()
         self._flush_dirty_hass_entities()
-        schedule_flush_duration = time.perf_counter() - t0
-        total_duration = time.perf_counter() - started
-        self._last_status_profile = (
-            f"profile_total={total_duration:.3f}s "
-            f"ensure_central={ensure_central_duration:.3f}s "
-            f"central_updates={central_updates_duration:.3f}s "
-            f"sections={sections_duration:.3f}s "
-            f"pgs={pgs_duration:.3f}s "
-            f"devices={devices_duration:.3f}s "
-            f"device_dynamic={device_dynamic_duration:.3f}s "
-            f"device_state={device_state_duration:.3f}s "
-            f"schedule_flush={schedule_flush_duration:.3f}s"
-        )
         return added_any
 
     def _send_signal_entities_added(self) -> None:
