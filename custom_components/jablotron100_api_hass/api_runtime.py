@@ -110,7 +110,6 @@ class Jablotron:
         self.in_service_mode = False
         self._ws_task: asyncio.Task | None = None
         self._dirty_entity_ids: set[str] = set()
-        self._flush_scheduled = False
         self._perf_last_summary = time.perf_counter()
         self._perf_message_count = 0
         self._perf_status_count = 0
@@ -265,25 +264,6 @@ class Jablotron:
                 len(self.entities_states),
             )
         self._maybe_log_perf_summary()
-
-    def _schedule_flush_dirty_hass_entities(self) -> None:
-        if self._flush_scheduled or not self._dirty_entity_ids:
-            return
-
-        def _flush() -> None:
-            self._flush_scheduled = False
-            self._flush_dirty_hass_entities()
-
-        self._flush_scheduled = True
-        try:
-            running_loop = asyncio.get_running_loop()
-        except RuntimeError:
-            running_loop = None
-
-        if running_loop is self._hass.loop:
-            self._hass.loop.call_soon(_flush)
-        else:
-            self._hass.loop.call_soon_threadsafe(_flush)
 
     def _maybe_log_perf_summary(self) -> None:
         if not LOGGER.isEnabledFor(10):
@@ -671,7 +651,7 @@ class Jablotron:
 
         stale_device_ids = (previous_device_ids | set(self._catalog_devices_by_id)) - visible_device_ids
         self._reconcile_catalog_devices(stale_device_ids)
-        self._schedule_flush_dirty_hass_entities()
+        self._flush_dirty_hass_entities()
         return added_any
 
     def _remove_device_controls(self, device_no: int) -> None:
@@ -815,7 +795,7 @@ class Jablotron:
         devices_duration = time.perf_counter() - t0
 
         t0 = time.perf_counter()
-        self._schedule_flush_dirty_hass_entities()
+        self._flush_dirty_hass_entities()
         schedule_flush_duration = time.perf_counter() - t0
         total_duration = time.perf_counter() - started
         self._last_status_profile = (
