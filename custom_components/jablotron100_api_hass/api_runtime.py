@@ -101,8 +101,6 @@ class Jablotron:
         self._central_unit: JablotronCentralUnit | None = None
         self._catalog: dict[str, Any] = {}
         self._catalog_devices_by_id: dict[int, dict[str, Any]] = {}
-        self._last_catalog_payload: dict[str, Any] | None = None
-        self._last_status_payload: dict[str, Any] | None = None
         self._last_authorized_user_or_device: str | None = None
         self._code_prefix_enabled = False
         self.entities: dict[EntityType, dict[str, JablotronControl]] = {entity_type: {} for entity_type in EntityType.__members__.values()}
@@ -121,8 +119,6 @@ class Jablotron:
         self._perf_flush_count = 0
         self._perf_slow_flush_count = 0
         self._perf_flushed_entity_count = 0
-        self._perf_skipped_status_count = 0
-        self._perf_skipped_catalog_count = 0
         self._last_status_profile: str | None = None
         self._registry_remove_attempted_ids: set[str] = set()
 
@@ -296,12 +292,10 @@ class Jablotron:
         if now - self._perf_last_summary < PERF_SUMMARY_INTERVAL_SECONDS:
             return
         LOGGER.debug(
-            "HA WS profiling summary: messages=%s status=%s catalog=%s skipped_status=%s skipped_catalog=%s slow_messages=%s flushes=%s slow_flushes=%s flushed_entities=%s current_entities=%s current_states=%s",
+            "HA WS profiling summary: messages=%s status=%s catalog=%s slow_messages=%s flushes=%s slow_flushes=%s flushed_entities=%s current_entities=%s current_states=%s",
             self._perf_message_count,
             self._perf_status_count,
             self._perf_catalog_count,
-            self._perf_skipped_status_count,
-            self._perf_skipped_catalog_count,
             self._perf_slow_message_count,
             self._perf_flush_count,
             self._perf_slow_flush_count,
@@ -606,10 +600,6 @@ class Jablotron:
 
     def _apply_catalog(self, catalog: dict) -> bool:
         catalog = self._apply_device_type_overrides(catalog)
-        if self._last_catalog_payload == catalog:
-            self._perf_skipped_catalog_count += 1
-            return False
-        self._last_catalog_payload = catalog
         previous_device_ids = set(self._catalog_devices_by_id)
         self._catalog = catalog
         self._catalog_devices_by_id = {
@@ -755,11 +745,6 @@ class Jablotron:
         started = time.perf_counter()
         self._set_service_mode(bool(status.get("service_mode", False)))
         self._set_connection_health(True)
-        if self._last_status_payload == status:
-            self._perf_skipped_status_count += 1
-            self._last_status_profile = "unchanged_payload"
-            return False
-        self._last_status_payload = status
         t0 = time.perf_counter()
         added_any = self._ensure_central_dynamic_entities(status)
         ensure_central_duration = time.perf_counter() - t0
