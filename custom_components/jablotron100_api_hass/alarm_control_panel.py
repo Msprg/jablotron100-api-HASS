@@ -55,6 +55,11 @@ class JablotronAlarmControlPanelEntity(JablotronEntity, AlarmControlPanelEntity)
 
 		self._partially_arming_mode = self._jablotron.partially_arming_mode()
 		self._code_required_for_disarm = self._jablotron.is_code_required_for_disarm()
+		self._attr_code_arm_required = self._jablotron.is_code_required_for_arm()
+		self._attr_supported_features = self._detect_supported_features()
+		self._attr_alarm_state = self._get_state()
+		self._attr_changed_by = self._changed_by
+		self._attr_code_format = self._detect_code_format()
 
 	def alarm_disarm(self, code: str | None = None) -> None:
 		if self._get_state() == AlarmControlPanelState.DISARMED:
@@ -146,27 +151,6 @@ class JablotronAlarmControlPanelEntity(JablotronEntity, AlarmControlPanelEntity)
 
 		await self._jablotron.async_modify_alarm_control_panel_section_state(self._control.section, state, code)
 
-	@property
-	def alarm_state(self) -> AlarmControlPanelState | None:
-		state = self._get_state()
-		return state if isinstance(state, AlarmControlPanelState) else None
-
-	@property
-	def changed_by(self) -> str | None:
-		return self._changed_by
-
-	@property
-	def code_arm_required(self) -> bool:
-		return self._jablotron.is_code_required_for_arm()
-
-	@property
-	def code_format(self) -> CodeFormat | None:
-		return self._detect_code_format()
-
-	@property
-	def supported_features(self) -> AlarmControlPanelEntityFeature:
-		return self._detect_supported_features()
-
 	def _detect_supported_features(self) -> AlarmControlPanelEntityFeature:
 		if self._partially_arming_mode == PartiallyArmingMode.NOT_SUPPORTED:
 			return AlarmControlPanelEntityFeature.ARM_AWAY
@@ -178,7 +162,7 @@ class JablotronAlarmControlPanelEntity(JablotronEntity, AlarmControlPanelEntity)
 
 	def _detect_code_format(self) -> CodeFormat | None:
 		if self._get_state() == AlarmControlPanelState.DISARMED:
-			code_required = self.code_arm_required
+			code_required = self._attr_code_arm_required
 		else:
 			code_required = self._code_required_for_disarm
 
