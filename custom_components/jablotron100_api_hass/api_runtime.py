@@ -829,18 +829,16 @@ class JablotronEntity(Entity):
         self._update_attributes()
 
     def _update_attributes(self) -> None:
-        self._attr_available = (
-            self._jablotron.last_update_success
-            and self._jablotron.entities_states.get(self._control.id) is not None
-            and not self._jablotron.in_service_mode
-        )
-        self._attr_extra_state_attributes = None
         if self._control.hass_device is not None and self._control.hass_device.battery_level is not None:
             self._attr_extra_state_attributes = {ATTR_BATTERY_LEVEL: self._control.hass_device.battery_level}
 
     @property
     def control(self) -> JablotronControl:
         return self._control
+
+    @property
+    def available(self) -> bool:
+        return self._jablotron.last_update_success and self._jablotron.entities_states.get(self._control.id) is not None and not self._jablotron.in_service_mode
 
     async def async_added_to_hass(self) -> None:
         self._jablotron.subscribe_hass_entity_for_updates(self._control.id, self)

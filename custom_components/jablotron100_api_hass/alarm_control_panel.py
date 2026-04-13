@@ -10,7 +10,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import StateType
 from . import JablotronConfigEntry
-from .const import EntityType, LOGGER, PartiallyArmingMode
+from .const import EntityType, PartiallyArmingMode
 from .api_runtime import Jablotron, JablotronEntity, JablotronAlarmControlPanel
 from .errors import ControlDenied
 
@@ -173,22 +173,4 @@ class JablotronAlarmControlPanelEntity(JablotronEntity, AlarmControlPanelEntity)
 
 	@staticmethod
 	def _clean_code(code: str | None) -> str | None:
-		if code is None:
-			return None
-
-		cleaned = code.strip()
-		if cleaned == "":
-			return None
-
-		for placeholder in ("undefined", "null"):
-			lower_cleaned = cleaned.lower()
-			if lower_cleaned == placeholder:
-				LOGGER.warning("Received malformed alarm code placeholder from the frontend; treating it as empty input.")
-				return None
-			if lower_cleaned.startswith(placeholder):
-				remainder = cleaned[len(placeholder):].strip()
-				if remainder != "" and all(character in "0123456789*" for character in remainder):
-					LOGGER.warning("Received malformed alarm code placeholder prefix from the frontend; stripping it before sending the code.")
-					return remainder
-
-		return cleaned
+		return None if code == "" else code
