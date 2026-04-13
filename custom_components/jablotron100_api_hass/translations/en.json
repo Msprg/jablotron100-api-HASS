@@ -7,6 +7,7 @@
 				"data": {
 					"server_url": "Server URL",
 					"api_token": "API token",
+					"control_code": "Default control code",
 					"tls_ca_cert": "CA certificate path",
 					"tls_client_cert": "Client certificate path",
 					"tls_client_key": "Client key path"
@@ -249,12 +250,15 @@
 				}
 			},
 			"reconfigure_settings": {
-				"title": "jablotron100-api-HASS",
+				"title": "Reconfigure connection",
+				"description": "Update the API server connection or rotate secrets. Leave password fields empty to keep the current values.",
 				"data": {
-					"serial_port": "Serial port",
-					"password": "Code",
-					"number_of_devices": "Number of devices",
-					"number_of_pg_outputs": "Number of programmable PG outputs"
+					"server_url": "Server URL",
+					"api_token": "API token",
+					"control_code": "Default control code",
+					"tls_ca_cert": "CA certificate path",
+					"tls_client_cert": "Client certificate path",
+					"tls_client_key": "Client key path"
 				}
 			},
 			"reconfigure_devices": {
@@ -509,16 +513,20 @@
 			"init": {
 				"menu_options": {
 					"options": "Options",
-					"debug": "Debugging"
+					"device_types": "Device types"
 				}
 			},
 			"options": {
 				"title": "Options",
 				"data": {
-					"partially_arming_mode": "Partially arming",
+					"partially_arming_mode": "Partial arming mode",
 					"require_code_to_arm": "Require code to arm",
 					"require_code_to_disarm": "Require code to disarm"
 				}
+			},
+			"device_types": {
+				"title": "Device types",
+				"description": "Override automatically detected device types when the panel metadata is not specific enough."
 			},
 			"debug": {
 				"title": "Debugging",

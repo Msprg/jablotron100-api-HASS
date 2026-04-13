@@ -3,12 +3,14 @@
 		"step": {
 			"user": {
 				"title": "jablotron100-api-HASS",
-				"description": "Pro sledování stavu periferií je třeba kód administrátora a zadání počtu periferií",
+				"description": "Připojte Home Assistant k Jablotron API serveru",
 				"data": {
-					"serial_port": "Sériový port",
-					"password": "Kód",
-					"number_of_devices": "Počet periferií",
-					"number_of_pg_outputs": "Počet programovatelných výstupů"
+					"server_url": "URL serveru",
+					"api_token": "API token",
+					"control_code": "Výchozí ovládací kód",
+					"tls_ca_cert": "Cesta k certifikátu CA",
+					"tls_client_cert": "Cesta ke klientskému certifikátu",
+					"tls_client_key": "Cesta ke klientskému klíči"
 				}
 			},
 			"devices": {
@@ -248,12 +250,15 @@
 				}
 			},
 			"reconfigure_settings": {
-				"title": "jablotron100-api-HASS",
+				"title": "Změnit připojení",
+				"description": "Aktualizujte připojení k API serveru nebo změňte tajné údaje. Pokud necháte pole hesel prázdná, zachovají se stávající hodnoty.",
 				"data": {
-					"serial_port": "Sériový port",
-					"password": "Kód",
-					"number_of_devices": "Počet periferií",
-					"number_of_pg_outputs": "Počet programovatelných výstupů"
+					"server_url": "URL serveru",
+					"api_token": "API token",
+					"control_code": "Výchozí ovládací kód",
+					"tls_ca_cert": "Cesta k certifikátu CA",
+					"tls_client_cert": "Cesta ke klientskému certifikátu",
+					"tls_client_key": "Cesta ke klientskému klíči"
 				}
 			},
 			"reconfigure_devices": {
@@ -507,16 +512,20 @@
 			"init": {
 				"menu_options": {
 					"options": "Možnosti",
-					"debug": "Ladění"
+					"device_types": "Typy zařízení"
 				}
 			},
 			"options": {
 				"title": "Možnosti",
 				"data": {
-					"partially_arming_mode": "Částečné zabezpečení",
+					"partially_arming_mode": "Režim částečného zabezpečení",
 					"require_code_to_arm": "Vyžadovat kód k zabezpečení",
 					"require_code_to_disarm": "Vyžadovat kód k odbezpečení"
 				}
+			},
+			"device_types": {
+				"title": "Typy zařízení",
+				"description": "Přepište automaticky rozpoznané typy zařízení, pokud metadata z ústředny nejsou dostatečně přesná."
 			},
 			"debug": {
 				"title": "Ladění",

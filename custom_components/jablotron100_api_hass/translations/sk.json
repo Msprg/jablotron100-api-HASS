@@ -3,12 +3,14 @@
 		"step": {
 			"user": {
 				"title": "jablotron100-api-HASS",
-				"description": "Pre sledovanie stavu periferií je potrebné kód administrátora a zadanie počtu periferií",
+				"description": "Pripojte Home Assistant k Jablotron API serveru",
 				"data": {
-					"serial_port": "Sériový port",
-					"password": "Kód",
-					"number_of_devices": "Počet periferií",
-					"number_of_pg_outputs": "Počet programovateľných výstupů PG"
+					"server_url": "URL servera",
+					"api_token": "API token",
+					"control_code": "Predvolený ovládací kód",
+					"tls_ca_cert": "Cesta k certifikátu CA",
+					"tls_client_cert": "Cesta ku klientskému certifikátu",
+					"tls_client_key": "Cesta ku klientskému kľúču"
 				}
 			},
 			"devices": {
@@ -248,12 +250,15 @@
 				}
 			},
 			"reconfigure_settings": {
-				"title": "jablotron100-api-HASS",
+				"title": "Zmeniť pripojenie",
+				"description": "Aktualizujte pripojenie k API serveru alebo zmeňte tajné údaje. Ak necháte polia hesiel prázdne, ponechajú sa aktuálne hodnoty.",
 				"data": {
-					"serial_port": "Sériový port",
-					"password": "Kód",
-					"number_of_devices": "Počet periferií",
-					"number_of_pg_outputs": "Počet programovateľných výstupů PG"
+					"server_url": "URL servera",
+					"api_token": "API token",
+					"control_code": "Predvolený ovládací kód",
+					"tls_ca_cert": "Cesta k certifikátu CA",
+					"tls_client_cert": "Cesta ku klientskému certifikátu",
+					"tls_client_key": "Cesta ku klientskému kľúču"
 				}
 			},
 			"reconfigure_devices": {
@@ -507,16 +512,20 @@
 			"init": {
 				"menu_options": {
 					"options": "Možnosti",
-					"debug": "Ladenie"
+					"device_types": "Typy zariadení"
 				}
 			},
 			"options": {
 				"title": "Možnosti",
 				"data": {
-					"partially_arming_mode": "Partially arming",
+					"partially_arming_mode": "Režim čiastočného zabezpečenia",
 					"require_code_to_arm": "Vyžadovať kód k zabezpečeniu",
 					"require_code_to_disarm": "Vyžadovať kód k odbezpečeniu"
 				}
+			},
+			"device_types": {
+				"title": "Typy zariadení",
+				"description": "Prepíšte automaticky rozpoznané typy zariadení, ak metadata z ústredne nie sú dostatočne presné."
 			},
 			"debug": {
 				"title": "Ladenie",

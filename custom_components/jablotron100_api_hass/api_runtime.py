@@ -90,7 +90,7 @@ class Jablotron:
         self._api = JablotronApiClient(
             hass,
             server_url=config[CONF_SERVER_URL],
-            api_token=options.get(CONF_API_TOKEN, config[CONF_API_TOKEN]),
+            api_token=config.get(CONF_API_TOKEN) or options.get(CONF_API_TOKEN, ""),
             ca_cert=config.get(CONF_TLS_CA_CERT),
             client_cert=config.get(CONF_TLS_CLIENT_CERT),
             client_key=config.get(CONF_TLS_CLIENT_KEY),
@@ -169,7 +169,7 @@ class Jablotron:
         return self._last_authorized_user_or_device
 
     def default_control_code(self) -> str | None:
-        code = self._options.get(CONF_CONTROL_CODE, self._config.get(CONF_CONTROL_CODE))
+        code = self._config.get(CONF_CONTROL_CODE) or self._options.get(CONF_CONTROL_CODE)
         if not isinstance(code, str):
             return None
         cleaned = code.strip()
