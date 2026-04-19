@@ -44,6 +44,7 @@ class JablotronProgrammableOutputEntity(JablotronEntity, SwitchEntity):
 		control: JablotronProgrammableOutput,
 	) -> None:
 		super().__init__(jablotron, control)
+		self._attr_suggested_object_id = f"jablotron100_pg{self._control.pg_output_number}"
 
 	def _update_attributes(self) -> None:
 		super()._update_attributes()
