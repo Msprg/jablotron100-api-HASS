@@ -257,7 +257,7 @@ class Jablotron:
             try:
                 ws = await self._api.ws_connect()
                 await ws.receive_json()
-                await ws.send_json({"action": "subscribe", "topics": ["status", "catalog", "users"]})
+                await ws.send_json({"action": "subscribe", "topics": ["status", "catalog"]})
                 async for msg in ws:
                     if msg.type.name != "TEXT":
                         continue
