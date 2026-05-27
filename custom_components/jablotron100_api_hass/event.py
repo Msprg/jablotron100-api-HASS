@@ -3,8 +3,7 @@ from homeassistant.components.event import (
 	EventEntity,
 	EventEntityDescription,
 )
-from homeassistant.core import callback, HomeAssistant
-from homeassistant.helpers.dispatcher import async_dispatcher_connect
+from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from typing import Dict
 from . import JablotronConfigEntry
@@ -13,6 +12,7 @@ from .const import (
 	EventLoginType,
 )
 from .api_runtime import Jablotron, JablotronControl, JablotronEntity
+from .platform_setup import setup_entity_platform
 
 EVENT_TYPES: Dict[EntityType, EventEntityDescription] = {
 	EntityType.EVENT_LOGIN: EventEntityDescription(
@@ -25,23 +25,12 @@ EVENT_TYPES: Dict[EntityType, EventEntityDescription] = {
 
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: JablotronConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
-	jablotron_instance: Jablotron = config_entry.runtime_data
-
-	@callback
-	def add_entities() -> None:
-		entities = []
-
-		for entity_type in EVENT_TYPES:
-			for entity in jablotron_instance.entities[entity_type].values():
-				if entity.id not in jablotron_instance.hass_entities:
-					entities.append(JablotronEventEntity(jablotron_instance, entity, EVENT_TYPES[entity_type]))
-
-		async_add_entities(entities)
-
-	add_entities()
-
-	config_entry.async_on_unload(
-		async_dispatcher_connect(hass, jablotron_instance.signal_entities_added(), add_entities)
+	setup_entity_platform(
+		hass,
+		config_entry,
+		async_add_entities,
+		EVENT_TYPES.keys(),
+		lambda jablotron, control, entity_type: JablotronEventEntity(jablotron, control, EVENT_TYPES[entity_type]),
 	)
 
 
@@ -59,4 +48,4 @@ class JablotronEventEntity(JablotronEntity, EventEntity):
 
 	def trigger_event(self, event: EventLoginType) -> None:
 		self._trigger_event(event.value)
-		self.schedule_update_ha_state()
+		self.async_write_ha_state()

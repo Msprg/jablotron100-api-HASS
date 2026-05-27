@@ -10,8 +10,7 @@ from homeassistant.const import (
 	UnitOfElectricPotential,
 	UnitOfTemperature,
 )
-from homeassistant.core import callback, HomeAssistant
-from homeassistant.helpers.dispatcher import async_dispatcher_connect
+from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from typing import Dict
@@ -22,6 +21,7 @@ from .api_runtime import (
 	JablotronControl,
 	JablotronEntity,
 )
+from .platform_setup import setup_entity_platform
 
 SENSOR_TYPES: Dict[EntityType, SensorEntityDescription] = {
 	EntityType.SIGNAL_STRENGTH: SensorEntityDescription(
@@ -100,23 +100,14 @@ SENSOR_TYPES: Dict[EntityType, SensorEntityDescription] = {
 
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: JablotronConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
-	jablotron_instance: Jablotron = config_entry.runtime_data
-
-	@callback
-	def add_entities() -> None:
-		entities = []
-
-		for entity_type in SENSOR_TYPES:
-			for entity in jablotron_instance.entities[entity_type].values():
-				if entity.id not in jablotron_instance.hass_entities:
-					entities.append(JablotronSensor(jablotron_instance, entity, SENSOR_TYPES[entity_type]))
-
-		async_add_entities(entities)
-
-	add_entities()
-
-	config_entry.async_on_unload(
-		async_dispatcher_connect(hass, jablotron_instance.signal_entities_added(), add_entities)
+	setup_entity_platform(
+		hass,
+		config_entry,
+		async_add_entities,
+		SENSOR_TYPES.keys(),
+		lambda jablotron, control, entity_type: JablotronSensor(
+			jablotron, control, SENSOR_TYPES[entity_type]
+		),
 	)
 
 

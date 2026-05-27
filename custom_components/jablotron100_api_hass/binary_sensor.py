@@ -4,8 +4,7 @@ from homeassistant.components.binary_sensor import (
 	BinarySensorEntityDescription,
 	BinarySensorEntity,
 )
-from homeassistant.core import callback, HomeAssistant, ServiceCall
-from homeassistant.helpers.dispatcher import async_dispatcher_connect
+from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import async_get_current_platform, AddEntitiesCallback
 from homeassistant.const import (
@@ -15,6 +14,7 @@ from typing import Dict
 from . import JablotronConfigEntry
 from .const import EntityType
 from .api_runtime import Jablotron, JablotronControl, JablotronEntity
+from .platform_setup import setup_entity_platform
 
 BINARY_SENSOR_TYPES: Dict[EntityType, BinarySensorEntityDescription] = {
 	EntityType.BATTERY_PROBLEM: BinarySensorEntityDescription(
@@ -108,21 +108,14 @@ BINARY_SENSOR_TYPES: Dict[EntityType, BinarySensorEntityDescription] = {
 async def async_setup_entry(hass: HomeAssistant, config_entry: JablotronConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
 	jablotron_instance: Jablotron = config_entry.runtime_data
 
-	@callback
-	def add_entities() -> None:
-		entities = []
-
-		for entity_type in BINARY_SENSOR_TYPES:
-			for entity in jablotron_instance.entities[entity_type].values():
-				if entity.id not in jablotron_instance.hass_entities:
-					entities.append(JablotronBinarySensor(jablotron_instance, entity, BINARY_SENSOR_TYPES[entity_type]))
-
-		async_add_entities(entities)
-
-	add_entities()
-
-	config_entry.async_on_unload(
-		async_dispatcher_connect(hass, jablotron_instance.signal_entities_added(), add_entities)
+	setup_entity_platform(
+		hass,
+		config_entry,
+		async_add_entities,
+		BINARY_SENSOR_TYPES.keys(),
+		lambda jablotron, control, entity_type: JablotronBinarySensor(
+			jablotron, control, BINARY_SENSOR_TYPES[entity_type]
+		),
 	)
 
 	async def reset_problem(entity: JablotronEntity, service_call: ServiceCall) -> None:

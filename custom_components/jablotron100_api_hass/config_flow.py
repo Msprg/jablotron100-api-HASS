@@ -45,32 +45,16 @@ PARTIAL_ARMING_SELECTOR = selector.SelectSelector(
 )
 AUTOMATIC_DEVICE_TYPE = "automatic"
 DEVICE_OVERRIDE_LABEL_PATTERN = re.compile(r"^(\d+): ")
-DEVICE_TYPE_OPTION_LABELS = {
+# Built from the DeviceType enum so that adding/removing a device type in
+# const.DeviceType automatically updates the override UI. CENTRAL_UNIT is
+# the panel itself, not an override target.
+DEVICE_TYPE_OPTION_LABELS: dict[str, str] = {
     AUTOMATIC_DEVICE_TYPE: "Automatic",
-    DeviceType.KEYPAD.value: "Keypad",
-    DeviceType.KEYPAD_WITH_DOOR_OPENING_DETECTOR.value: "Keypad with door opening detector",
-    DeviceType.SIREN_OUTDOOR.value: "Outdoor siren",
-    DeviceType.SIREN_INDOOR.value: "Indoor siren",
-    DeviceType.MOTION_DETECTOR.value: "Motion detector",
-    DeviceType.WINDOW_OPENING_DETECTOR.value: "Window opening detector",
-    DeviceType.DOOR_OPENING_DETECTOR.value: "Door opening detector",
-    DeviceType.GARAGE_DOOR_OPENING_DETECTOR.value: "Garage door opening detector",
-    DeviceType.GLASS_BREAK_DETECTOR.value: "Glass break detector",
-    DeviceType.SMOKE_DETECTOR.value: "Smoke detector",
-    DeviceType.FLOOD_DETECTOR.value: "Flood detector",
-    DeviceType.GAS_DETECTOR.value: "Gas detector",
-    DeviceType.THERMOSTAT.value: "Thermostat",
-    DeviceType.THERMOMETER.value: "Thermometer",
-    DeviceType.LOCK.value: "Lock",
-    DeviceType.TAMPER.value: "Tamper",
-    DeviceType.BUTTON.value: "Button",
-    DeviceType.KEY_FOB.value: "Key fob",
-    DeviceType.ELECTRICITY_METER_WITH_PULSE_OUTPUT.value: "Electricity meter with pulse output",
-    DeviceType.RADIO_MODULE.value: "Radio module",
-    DeviceType.VALVE.value: "Valve",
-    DeviceType.CUSTOM.value: "Custom",
-    DeviceType.OTHER.value: "Other",
-    DeviceType.EMPTY.value: "Empty",
+    **{
+        device_type.value: device_type.get_name()
+        for device_type in DeviceType
+        if device_type is not DeviceType.CENTRAL_UNIT
+    },
 }
 
 
